@@ -1,806 +1,299 @@
- <div align="center">
+<div align="center">
 
-# CodeGraphy v2.1.1
-### Visual Context Orchestrator & Context Intelligence Platform for AI-First Developers
+# CodeGraphy Lite
 
-![Windows 10/11 x64](https://img.shields.io/badge/Platform-Windows%2010%2F11%20x64-blue?style=for-the-badge&logo=windows)
-![Local First](https://img.shields.io/badge/Architecture-100%25%20Local--First-emerald?style=for-the-badge)
-![Release](https://img.shields.io/badge/Release-v2.1.1-38bdf8?style=for-the-badge)
-![MCP](https://img.shields.io/badge/Protocol-MCP%20(14%20Tools)-cyan?style=for-the-badge)
-![Security](https://img.shields.io/badge/Security-Nuitka%20%2B%20RC4-red?style=for-the-badge)
+### Local-First Visual Architecture Canvas & MCP Server for AI-First Developers
 
 **Understand your architecture. Give AI the right context.**
 
+[Quick Start](https://www.google.com/search?q=%23-en-quickstart) · [Lite vs Pro](https://www.google.com/search?q=%23-en-compare) · [Get CodeGraphy Pro](https://github.com/Vindettobkb/codegraphy-pro)
+
 </div>
 
----
+## Table of Contents / Содержание
 
-## 📑 Table of Contents / Содержание
+### English
 
-### 🇬🇧 English
-- [Feature Showcase](#en-showcase)
-- [Problems CodeGraphy Solves](#en-problems)
-- [Download the Latest Release](#en-download)
-- [Key Features](#en-features)
-- [CodeGraphy Markdown Format (.cg.md)](#en-format)
-- [AI Prompt for Architecture Generation](#en-prompt)
-- [Example .cg.md Document](#en-example)
-- [System Requirements](#en-requirements)
-- [Release Checksums](#en-checksums)
-- [Contacts](#en-contacts)
+* [Feature Showcase](https://www.google.com/search?q=%23en-showcase)
 
-### 🇷🇺 Русский
-- [Демонстрация возможностей](#ru-showcase)
-- [Какие проблемы решает CodeGraphy](#ru-problems)
-- [Скачать последнюю версию](#ru-download)
-- [Основные возможности](#ru-features)
-- [Формат CodeGraphy Markdown (.cg.md)](#ru-format)
-- [AI-промпт для генерации архитектуры](#ru-prompt)
-- [Пример документа .cg.md](#ru-example)
-- [Системные требования](#ru-requirements)
-- [Контрольные суммы релизов](#ru-checksums)
-- [Контакты](#ru-contacts)
+* [Problems CodeGraphy Solves](https://www.google.com/search?q=%23en-problems)
 
----
+* [Quick Start](https://www.google.com/search?q=%23en-quickstart)
 
-# 🇬🇧 English
+* [Lite vs Pro](https://www.google.com/search?q=%23en-compare)
+
+* [CodeGraphy Markdown Format (.cg.md)](https://www.google.com/search?q=%23en-format)
+
+* [AI Prompt for Architecture Generation](https://www.google.com/search?q=%23en-prompt)
+
+* [Contacts](https://www.google.com/search?q=%23en-contacts)
+
+### Русский
+
+* [Демонстрация возможностей](https://www.google.com/search?q=%23ru-showcase)
+
+* [Какие проблемы решает CodeGraphy](https://www.google.com/search?q=%23ru-problems)
+
+* [Быстрый старт](https://www.google.com/search?q=%23ru-quickstart)
+
+* [Lite и Pro](https://www.google.com/search?q=%23ru-compare)
+
+* [Формат CodeGraphy Markdown (.cg.md)](https://www.google.com/search?q=%23ru-format)
+
+* [AI-промпт для генерации архитектуры](https://www.google.com/search?q=%23ru-prompt)
+
+* [Контакты](https://www.google.com/search?q=%23ru-contacts)
+
+# English
 
 <a id="en-showcase"></a>
-# 🎬 Feature Showcase
 
-## 1. Auto-Discovery & Living Architecture Map
+## Feature Showcase
+
+### 1. Auto-Discovery & Living Architecture Map
 
 Automatically scans repositories, discovers modules, extracts dependencies, and generates a reactive architecture graph.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/115c3574-b887-4214-befb-fdb27c5a76b4" alt="Scan and Living Architecture Graph" width="850">
+<img src="https://github.com/user-attachments/assets/115c3574-b887-4214-befb-fdb27c5a76b4" alt="Scan and Living Architecture Graph" width="850">
 </p>
 
-## 2. Layer Filtering & IDE Deep Linking
+### 2. Layer Filtering & IDE Deep Linking
 
-Filter architectural layers and jump directly to the corresponding file and line in PyCharm, VS Code, or Cursor.
+Filter architectural layers (`Frontend / UI`, `Backend / API & Services`, `Split Layers`) and jump directly to the corresponding file and line in PyCharm, VS Code, or Cursor.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/67355e0c-ab08-4b67-898f-ee6171afbc63" alt="Layer Filtering and IDE Integration" width="850">
+<img src="https://github.com/user-attachments/assets/67355e0c-ab08-4b67-898f-ee6171afbc63" alt="Layer Filtering and IDE Integration" width="850">
 </p>
 
-## 3. AI-Powered Architectural Analysis
+### 3. AI-Powered Architectural Context
 
-Gemini, Claude, and local Ollama models analyze architecture using compact AST context.
+Connect Claude Code, Cursor, Windsurf, or local models using structured graph context instead of dumping raw files.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/ca3fc0fe-44fd-4f0a-a64e-5aa5c91e3756" alt="AI Architecture Analysis" width="850">
+<img src="https://github.com/user-attachments/assets/ca3fc0fe-44fd-4f0a-a64e-5aa5c91e3756" alt="AI Architecture Analysis" width="850">
 </p>
-
----
 
 <a id="en-problems"></a>
-# 🧩 Problems CodeGraphy Solves
 
-Modern AI-assisted development faces three major challenges:
+## Problems CodeGraphy Solves
 
-### 1. Context Window Bloat
+1. **Context Window Bloat** — Sending entire source files to LLMs wastes tokens, slows down responses, and dilutes attention on the architecture that matters.
 
-Sending entire source files to LLMs wastes tokens, increases API costs, and reduces the model’s attention to important architectural details.
+2. **AI Hallucinations** — Without clear module boundaries and dependency direction, coding assistants invent non-existent interfaces and break layer rules.
 
-### 2. AI Hallucinations
+3. **Fragmented Architectural Knowledge** — Real features span UI components, API routes, services, and storage. CodeGraphy keeps the whole map interactive in one place.
 
-Large amounts of irrelevant code make models lose architectural context, causing them to invent interfaces and dependencies that do not exist.
+<a id="en-quickstart"></a>
 
-### 3. Fragmented Architectural Knowledge
+## Quick Start
 
-Real features often span multiple modules, services, adapters, and database layers. Developers repeatedly need to explain how everything is connected.
+Install **CodeGraphy Lite** locally (requires Python 3.10+):
 
-### The Solution
+```
+pip install codegraphy-lite
 
-CodeGraphy transforms a codebase into an interactive architecture graph, extracts compact AST representations for **19 programming languages**, and provides structured context to AI models and MCP clients.
+```
 
----
+Or install directly from GitHub:
 
-<a id="en-download"></a>
-# 📥 Download the Latest Release
+```
+git clone https://github.com/Vindettobkb/codegraphy-lite.git
+cd codegraphy-lite
+pip install -e .
 
-**Current version: `v2.1.1`**
+```
 
-- [📥 Download CodeGraphy Setup 2.1.1.exe](https://github.com/Vindettobkb/CodeGraphy-Desktop/releases/tag/v2.1.1)
-- [📦 Download CodeGraphy Portable 2.1.1.exe](https://github.com/Vindettobkb/CodeGraphy-Desktop/releases/tag/v2.1.1)
+Launch the local workspace UI:
 
-The Portable version does not require installation. Both links lead to the GitHub v2.1.1 release page, where you can choose the Setup or Portable asset.
+```
+codegraphy-lite --port 8000
 
----
+```
 
-<a id="en-features"></a>
-# ⚙️ Key Features
+Then open `http://127.0.0.1:8000` in your browser.
 
-## 1. Multi-Language Unified IR & AST Extraction
+<a id="en-compare"></a>
 
-### Supports 19 languages
+## Lite (Open Source) vs Pro
 
-Python, TypeScript, JavaScript, Go, Rust, Java, Kotlin, Scala, C, C++, C#, PHP, Ruby, Swift, Lua, SQL, Vue, HTML, CSS.
+**CodeGraphy Lite** gives you the interactive architecture canvas, layer views, `.cg.md` import/export, and core MCP tools for repositories up to 35 files. [**CodeGraphy Pro**](https://github.com/Vindettobkb/codegraphy-pro) unlocks full-repository scale, AST Smart Context compression, and static drift analysis.
 
-### Five context compression modes
-
-- `INTERFACE_ONLY`
-- `ARCHITECTURE_OVERVIEW`
-- `FULL_SIGNATURES`
-- `DEPENDENCY_FOCUS`
-- `SMART_CONTEXT`
-
-### Preserves
-
-- Function, class, struct, and interface definitions.
-- Inheritance relationships.
-- Parameter names and type annotations.
-- Decorators and default values.
-- Docstrings and exported symbols.
-
-**Benchmark:** Claimed token savings of **82.83%** in `SMART_CONTEXT` mode, according to the project benchmark using `tiktoken cl100k_base`.
-
-Automatic redaction is also included for recognized secret patterns such as `sk-*`, `AIza*`, `ghp_*`, and `.env` content.
-
-## 2. Living Multi-Topic Architecture Canvas
-
-Interactive architecture graph powered by React Flow.
-
-- Drag-and-drop node organization.
-- Focus Mode.
-- Task statuses: `To do`, `In progress`, `Done`.
-- Multi-topic selection via `selectedTopicIds`.
-- Resizable context and analysis drawers.
-- Hybrid Context Inspector with `Full / AST / Off` modes.
-- `Ctrl + K` command palette.
-- IDE deep linking for VS Code, Cursor, and PyCharm.
-
-## 3. Industrial Architecture Analysis
-
-Architecture analysis is powered by Tarjan’s strongly connected components algorithm.
-
-### Features
-
-- Circular dependency detection.
-- Architecture layer validation through `codegraphy.yaml`.
-- Afferent Coupling (`Ca`).
-- Efferent Coupling (`Ce`).
-- Mean Instability.
-- God Module detection.
-- Export reports to Mermaid.js, JSON, and HTML.
-
-### Project benchmarks
-
-| Scenario | Reported time |
-|---|---:|
-| Cold scan — 10,000 files | ≈ 1.71 seconds |
-| Warm incremental cache | ≈ 0.04 seconds |
-
-## 4. Integrated AI Chat
-
-Supports **340+ models** through multiple providers:
-
-- Google Gemini
-- OpenAI
-- Anthropic Claude
-- DeepSeek
-- Qwen
-- xAI Grok
-- OpenRouter
-
-### Local inference integrations
-
-- Ollama
-- LM Studio
-- Open WebUI
-
-### Additional features
-
-- SSE streaming.
-- Persistent local chat history.
-- Automatic session naming.
-- Workspace state stored in `.codegraphy/`.
-
-## 5. Official MCP Server — 14 Tools
-
-A local Model Context Protocol (MCP) server using sandboxed STDIO transport.
-
-| MCP Tool | Purpose |
-|---|---|
-| `get_architecture_summary` | Retrieve an architecture overview |
-| `get_module_contract` | Inspect module contracts |
-| `query_subgraph` | Query architecture subgraphs |
-| `build_smart_context` | Build optimized AI context |
-| `analyze_change_impact` | Analyze the impact of changes |
-| `get_architecture_diff` | Compare architecture changes |
-| `search_symbols` | Search code symbols |
-| `get_context_preset` | Retrieve context presets |
-| `save_context_preset` | Save context presets |
-| `record_context_memory` | Record architectural memory |
-| `run_impacted_tests` | Run impacted tests |
-| `get_workspace_status` | Retrieve workspace status |
-| `plan_change` | Plan architectural changes |
-| `explain_dependency` | Explain dependencies |
-
-### Integrations
-
-- Claude Desktop
-- Cursor
-
-### Additional capabilities
-
-- Multi-hop dependency analysis.
-- Blast Radius visualization.
-- Git working-tree diff compared with HEAD.
-- Architecture Decision Record (ADR) memory.
-- User-verified architectural guardrails.
-
-## 6. Intellectual Property Protection
-
-The production build uses multiple layers of protection.
-
-### Native compilation
-
-- Nuitka compilation.
-- Zig toolchain.
-- Python backend translated into native machine code.
-- No standalone `.pyc` bytecode files in the compiled backend.
-
-### Frontend protection
-
-- RC4 string encryption.
-- Control Flow Flattening.
-- Production sourcemaps disabled.
-
-### Application integrity
-
-- ASAR integrity verification.
-- Production bundle checksum verification.
-- DevTools lockdown.
-
----
+| Capability | CodeGraphy Lite | CodeGraphy Pro | 
+| ----- | ----- | ----- | 
+| Interactive Architecture Canvas & Split Layers | Included | Included | 
+| Direct Neighbors (1-Hop) & IDE Deep Linking | Included | Included | 
+| `.cg.md` Workspace Export & Import | Included | Included | 
+| Project Scan Limit | Up to 35 files | Unlimited | 
+| STDIO MCP Server Tools | 3 core tools | Full 11 tools | 
+| AST Smart Context (\~82.8% token savings) | — | Included | 
+| Hybrid Context Inspector (`Full / AST / Off`) & Secret Redaction | — | Included | 
+| Architecture Analysis (`Tarjan O(V+E)`), Blast Radius & Git Diff | — | Included | 
 
 <a id="en-format"></a>
-# 🗂️ CodeGraphy Markdown Format (.cg.md)
 
-CodeGraphy introduces a declarative Markdown format for sharing software architecture among developers, Git repositories, and AI systems.
+## CodeGraphy Markdown Format (.cg.md)
 
-The document has three main sections:
+CodeGraphy uses a declarative Markdown format for sharing software architecture across developers, Git repositories, and AI tools. Each `.cg.md` file has three sections:
 
-- **Lanes** — architectural lanes or areas.
-- **Tasks** — development tasks.
-- **Topics** — modules and their relationships.
+* **Lanes** — architectural layers or areas.
 
-Use `[[Topic Name]]` to link topics. File paths must be written as indented Markdown list items.
+* **Tasks** — development tasks.
 
----
+* **Topics** — modules and their `[[Topic Name]]` connections.
 
 <a id="en-prompt"></a>
-# 🤖 AI Prompt for Architecture Generation
 
-Copy the prompt below into ChatGPT, Claude, Gemini, or DeepSeek:
+## AI Prompt for Architecture Generation
 
-```text
-Generate a complete software architecture for my project
-using the CodeGraphy v2.1 Markdown format.
+Copy the prompt below into ChatGPT, Claude, Gemini, or DeepSeek to generate an import-ready `.cg.md` file:
+
+```
+Generate a complete software architecture for my project using the CodeGraphy Markdown format.
 
 Requirements:
+- Include YAML frontmatter: format: codegraphy-workspace, version: 2.0, workspace_id, name
+- Include three sections: ## Lanes, ## Tasks, ## Topics
+- Lanes format: - [lane_id] **Title** | order=0 | color=#38bdf8 | expanded
+- Tasks format: ### Task: Title `task_id` with status, lane, linked_topics, description
+- Topics format: ### Topic: Title `topic_id` with status, lane, task, position, description, connects_to, files
+- Use [[Topic Name]] for topic connections and indented list items for file paths.
+- Derive the architecture strictly from actual source files without inventing modules.
 
-- Include YAML frontmatter:
-  format: codegraphy-workspace
-  version: 2.0
-  workspace_id
-  name
-
-- Include three sections:
-  ## Lanes
-  ## Tasks
-  ## Topics
-
-- Lanes format:
-  - [lane_id] **Title** | order=0 | color=#38bdf8 | expanded
-
-- Tasks format:
-  ### Task: Title `task_id`
-
-  Required fields:
-  status
-  lane
-  linked_topics
-  description
-
-- Topics format:
-  ### Topic: Title `topic_id`
-
-  Required fields:
-  status
-  lane
-  task
-  position
-  description
-  connects_to
-  files
-
-- Use [[Topic Name]] for topic connections.
-- File paths must be indented Markdown list items.
-
-Generate a complete, valid, import-ready .cg.md document.
-
-Do not omit important modules.
-Do not invent non-existing files.
-
-If source code is provided, derive the architecture
-from its actual contents.
 ```
-
----
-
-<a id="en-example"></a>
-# 🧪 Example .cg.md Document
-
-Example: **Smart Home IoT Platform**
-
-```markdown
----
-format: codegraphy-workspace
-version: 2.0
-workspace_id: ws_smart_home
-name: Smart Home IoT Platform
----
-
-# Workspace: Smart Home IoT Platform
-
-## Lanes
-
-- [lane_drivers] **Device Drivers & Protocol** | order=0 | color=#f59e0b | expanded
-- [lane_core] **Automation Engine** | order=1 | color=#38bdf8 | expanded
-- [lane_api] **REST & WebSockets** | order=2 | color=#22c55e | expanded
-
-## Tasks
-
-### Task: Zigbee Integration `task_zigbee_01`
-
-- status: `in_progress`
-- lane: `lane_drivers`
-- linked_topics: `topic_zigbee_handler, topic_device_state`
-- description: Parse MQTT packets and update device state.
-
-## Topics
-
-### Topic: Zigbee MQTT Handler `topic_zigbee_handler`
-
-- status: `in_progress`
-- lane: `lane_drivers`
-- task: `task_zigbee_01`
-- position: `(150.0, 150.0)`
-- description: Subscribe to Zigbee2MQTT topics and decode sensor payloads.
-- connects_to: [[Device State Manager]]
-- files:
-  - `drivers/zigbee/mqtt_listener.py`
-  - `drivers/zigbee/decoders/climate_sensor.py`
-  - `drivers/zigbee/decoders/motion_detector.py`
-```
-
----
-
-<a id="en-requirements"></a>
-# 🖥️ System Requirements
-
-| Component | Requirement |
-|---|---|
-| Operating System | Windows 10 / 11 (64-bit) |
-| RAM | 4 GB minimum, 8 GB recommended |
-| Disk Space | Approximately 250 MB |
-| Architecture | x86_64 |
-
-<a id="en-checksums"></a>
-# 🔐 Release Checksums
-
-SHA-256 checksums can be used to verify the integrity of downloaded files.
-
-| File | Version | Size | SHA-256 |
-|---|---:|---:|---|
-| CodeGraphy Setup 2.1.1.exe | 2.1.1 | 139.07 MB | `3B8A36A860489E1FBEDCE1BFC4212527445F93342B3ACDA3BC2A7AD1AE59D92C` |
-| CodeGraphy Portable 2.1.1.exe | 2.1.1 | 127.39 MB | `CB4727CF036A83B3EFF324473BB9CCEE54145007A1D9685983B99A6EB6F6920F` |
-
-## Short checksum table (as in the original block)
-
-| File | Size | SHA-256 |
-|---|---:|---|
-| Setup 2.1.1.exe | 139.07 MB | `3B8A36A860489E1FBEDCE1BFC4212527445F93342B3ACDA3BC2A7AD1AE59D92C` |
-| Portable 2.1.1.exe | 127.39 MB | `CB4727CF036A83B3EFF324473BB9CCEE54145007A1D9685983B99A6EB6F6920F` |
 
 <a id="en-contacts"></a>
-# 📬 Contacts
 
-- **Telegram:** [@Methyienedloxymethamphetamine](https://t.me/Methyienedloxymethamphetamine)
-- **Discord:** `nevindetto`
+## Contacts
 
----
+* **Pro Edition:** [github.com/Vindettobkb/codegraphy-pro](https://github.com/Vindettobkb/codegraphy-pro)
 
-<div align="center">
+* **Telegram:** [@Methyienedloxymethamphetamine](https://t.me/Methyienedloxymethamphetamine)
 
-**CodeGraphy — Understand your architecture. Give AI the right context.**
+* **Discord:** `nevindetto`
 
-*Built for developers. Designed for AI-first workflows.*
-
-</div>
-
----
-
-# 🇷🇺 Русский
+# Русский
 
 <a id="ru-showcase"></a>
-# 🎬 Демонстрация возможностей
 
-## 1. Auto-Discovery & Living Architecture Map
+## Демонстрация возможностей
 
-Автоматически сканирует репозитории, обнаруживает модули, извлекает зависимости и генерирует реактивный архитектурный граф.
+### 1. Auto-Discovery & Living Architecture Map
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/115c3574-b887-4214-befb-fdb27c5a76b4" alt="Scan and Living Architecture Graph" width="850">
-</p>
-
-## 2. Layer Filtering & IDE Deep Linking
-
-Позволяет фильтровать архитектурные слои и переходить непосредственно к соответствующему файлу и строке в PyCharm, VS Code или Cursor.
+Автоматически сканирует репозиторий, находит модули, извлекает зависимости и строит интерактивный граф архитектуры.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/67355e0c-ab08-4b67-898f-ee6171afbc63" alt="Layer Filtering and IDE Integration" width="850">
+<img src="https://github.com/user-attachments/assets/115c3574-b887-4214-befb-fdb27c5a76b4" alt="Scan and Living Architecture Graph" width="850">
 </p>
 
-## 3. AI-Powered Architectural Analysis
+### 2. Layer Filtering & IDE Deep Linking
 
-Gemini, Claude и локальные модели Ollama анализируют архитектуру, используя компактный AST-контекст.
+Позволяет разделять архитектурные слои (`Frontend / UI`, `Backend / API & Services`, `Split Layers`) и открывать нужный файл и строку прямо в PyCharm, VS Code или Cursor.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/ca3fc0fe-44fd-4f0a-a64e-5aa5c91e3756" alt="AI Architecture Analysis" width="850">
+<img src="https://github.com/user-attachments/assets/67355e0c-ab08-4b67-898f-ee6171afbc63" alt="Layer Filtering and IDE Integration" width="850">
 </p>
 
----
+### 3. AI-Powered Architectural Context
+
+Подключайте Claude Code, Cursor, Windsurf или локальные модели через структурированный контекст графа вместо отправки сырых файлов.
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/ca3fc0fe-44fd-4f0a-a64e-5aa5c91e3756" alt="AI Architecture Analysis" width="850">
+</p>
 
 <a id="ru-problems"></a>
-# 🧩 Какие проблемы решает CodeGraphy
 
-Современная AI-разработка сталкивается с тремя основными проблемами:
+## Какие проблемы решает CodeGraphy
 
-### 1. Переполнение контекстного окна (Context Window Bloat)
+1. **Переполнение контекстного окна** — отправка целых исходников в LLM сжигает токены и ухудшает точность модели.
 
-Передача целых исходных файлов LLM расходует токены, увеличивает стоимость API и снижает внимание модели к важным архитектурным деталям.
+2. **Галлюцинации AI** — без понимания границ слоёв и зависимостей ассистент начинает придумывать несуществующие интерфейсы.
 
-### 2. Галлюцинации AI (AI Hallucinations)
+3. **Разрозненная архитектура** — фичи затрагивают UI, API, сервисы и хранилище сразу. CodeGraphy держит всю карту связей перед глазами.
 
-Большие объёмы нерелевантного кода мешают моделям сохранять архитектурный контекст. В результате AI может придумывать несуществующие интерфейсы и зависимости.
+<a id="ru-quickstart"></a>
 
-### 3. Разрозненные архитектурные знания (Fragmented Architectural Knowledge)
+## Быстрый старт
 
-Реальные функции часто охватывают несколько модулей, сервисов, адаптеров и слоёв базы данных. Разработчикам приходится снова и снова объяснять, как всё связано.
+Установите **CodeGraphy Lite** (требуется Python 3.10+):
 
-### Решение
+```
+pip install codegraphy-lite
 
-CodeGraphy преобразует кодовую базу в интерактивный архитектурный граф, извлекает компактные AST-представления для **19 языков программирования** и предоставляет структурированный контекст AI-моделям и MCP-клиентам.
+```
 
----
+Или из репозитория GitHub:
 
-<a id="ru-download"></a>
-# 📥 Скачать последнюю версию
+```
+git clone https://github.com/Vindettobkb/codegraphy-lite.git
+cd codegraphy-lite
+pip install -e .
 
-**Текущая версия: `v2.1.1`**
+```
 
-- [📥 Скачать CodeGraphy Setup 2.1.1.exe](https://github.com/Vindettobkb/CodeGraphy-Desktop/releases/tag/v2.1.1)
-- [📦 Скачать CodeGraphy Portable 2.1.1.exe](https://github.com/Vindettobkb/CodeGraphy-Desktop/releases/tag/v2.1.1)
+Запуск локального интерфейса:
 
-> Portable-версия не требует установки.
+```
+codegraphy-lite --port 8000
 
-> Обе ссылки ведут на страницу релиза GitHub v2.1.1, где можно выбрать Setup или Portable.
+```
 
----
+После запуска откройте `http://127.0.0.1:8000` в браузере.
 
-<a id="ru-features"></a>
-# ⚙️ Основные возможности
+<a id="ru-compare"></a>
 
-## 1. Multi-Language Unified IR & AST Extraction
+## Lite и Pro
 
-### Поддержка 19 языков
+**CodeGraphy Lite** — бесплатная open-source версия с интерактивным графом, слоями, форматом `.cg.md` и базовыми MCP-инструментами (до 35 файлов). [**CodeGraphy Pro**](https://github.com/Vindettobkb/codegraphy-pro) снимает лимит файлов и добавляет AST-сжатие контекста, инспектор токенов и статический анализ архитектуры.
 
-Python, TypeScript, JavaScript, Go, Rust, Java, Kotlin, Scala, C, C++, C#, PHP, Ruby, Swift, Lua, SQL, Vue, HTML, CSS.
-
-### Пять режимов сжатия контекста
-
-- `INTERFACE_ONLY`
-- `ARCHITECTURE_OVERVIEW`
-- `FULL_SIGNATURES`
-- `DEPENDENCY_FOCUS`
-- `SMART_CONTEXT`
-
-### Что сохраняется
-
-- Определения функций, классов, структур и интерфейсов.
-- Связи наследования.
-- Имена параметров и аннотации типов.
-- Декораторы и значения по умолчанию.
-- Docstrings и экспортируемые символы.
-
-**Benchmark:** заявленная экономия токенов — **82.83%** в режиме `SMART_CONTEXT`, согласно benchmark проекта на `tiktoken cl100k_base`.
-
-Также предусмотрено автоматическое скрытие распознаваемых секретов, например шаблонов `sk-*`, `AIza*`, `ghp_*` и содержимого `.env`.
-
-## 2. Living Multi-Topic Architecture Canvas
-
-Интерактивный архитектурный граф на базе React Flow.
-
-- Drag-and-drop организация узлов.
-- Focus Mode.
-- Статусы задач: `To do`, `In progress`, `Done`.
-- Выбор нескольких тем через `selectedTopicIds`.
-- Изменяемые по размеру панели контекста и анализа.
-- Hybrid Context Inspector с режимами `Full / AST / Off`.
-- Командная палитра `Ctrl + K`.
-- IDE Deep Linking для VS Code, Cursor и PyCharm.
-
-## 3. Industrial Architecture Analysis
-
-Архитектурный анализ построен на алгоритме поиска сильно связных компонент Тарьяна (Tarjan's strongly connected components algorithm).
-
-### Возможности
-
-- Обнаружение циклических зависимостей.
-- Проверка архитектурных слоёв через `codegraphy.yaml`.
-- Afferent Coupling (`Ca`).
-- Efferent Coupling (`Ce`).
-- Mean Instability.
-- Обнаружение God Module.
-- Экспорт отчётов в Mermaid.js, JSON и HTML.
-
-### Бенчмарки проекта
-
-| Сценарий | Заявленное время |
-|---|---:|
-| Cold scan — 10 000 файлов | ≈ 1.71 секунды |
-| Warm incremental cache | ≈ 0.04 секунды |
-
-## 4. Integrated AI Chat
-
-Поддержка **340+ моделей** через нескольких провайдеров:
-
-- Google Gemini
-- OpenAI
-- Anthropic Claude
-- DeepSeek
-- Qwen
-- xAI Grok
-- OpenRouter
-
-### Локальные интеграции
-
-- Ollama
-- LM Studio
-- Open WebUI
-
-### Дополнительные функции
-
-- SSE streaming.
-- Постоянная локальная история чатов.
-- Автоматическое именование сессий.
-- Хранение состояния workspace в `.codegraphy/`.
-
-## 5. Official MCP Server — 14 Tools
-
-Локальный сервер Model Context Protocol (MCP) с изолированным STDIO-транспортом.
-
-| MCP-инструмент | Назначение |
-|---|---|
-| `get_architecture_summary` | Получить обзор архитектуры |
-| `get_module_contract` | Изучить контракты модулей |
-| `query_subgraph` | Запросить подграф архитектуры |
-| `build_smart_context` | Создать оптимизированный AI-контекст |
-| `analyze_change_impact` | Проанализировать влияние изменений |
-| `get_architecture_diff` | Сравнить изменения архитектуры |
-| `search_symbols` | Искать символы в коде |
-| `get_context_preset` | Получить пресет контекста |
-| `save_context_preset` | Сохранить пресет контекста |
-| `record_context_memory` | Записать архитектурную память |
-| `run_impacted_tests` | Запустить затронутые тесты |
-| `get_workspace_status` | Получить состояние workspace |
-| `plan_change` | Спланировать архитектурные изменения |
-| `explain_dependency` | Объяснить зависимости |
-
-### Интеграции
-
-- Claude Desktop
-- Cursor
-
-### Дополнительные возможности
-
-- Multi-hop анализ зависимостей.
-- Визуализация Blast Radius.
-- Git working-tree diff относительно HEAD.
-- Память Architecture Decision Record (ADR).
-- Архитектурные ограничения (guardrails), проверенные пользователем.
-
-## 6. Intellectual Property Protection
-
-В production-сборке используются несколько уровней защиты.
-
-### Native compilation
-
-- Компиляция через Nuitka.
-- Использование Zig toolchain.
-- Python backend переводится в native machine code.
-- В скомпилированном backend отсутствуют отдельные `.pyc`-файлы байткода.
-
-### Frontend protection
-
-- RC4-шифрование строк.
-- Control Flow Flattening.
-- Sourcemaps отключены в production.
-
-### Application integrity
-
-- ASAR integrity verification.
-- Проверка checksum production bundle.
-- DevTools lockdown.
-
----
+| Возможность | CodeGraphy Lite | CodeGraphy Pro | 
+| ----- | ----- | ----- | 
+| Интерактивный граф архитектуры и Split Layers | Есть | Есть | 
+| Direct Neighbors (1-Hop) и переходы в IDE | Есть | Есть | 
+| Экспорт и импорт `.cg.md` | Есть | Есть | 
+| Лимит сканирования проекта | До 35 файлов | Без ограничений | 
+| MCP-сервер (STDIO) | 3 базовых инструмента | Все 11 инструментов | 
+| AST Smart Context (\~82.8% экономии токенов) | — | Есть | 
+| Hybrid Context Inspector (`Full / AST / Off`) и скрытие секретов | — | Есть | 
+| Architecture Analysis (`Tarjan O(V+E)`), Blast Radius и Git Diff | — | Есть | 
 
 <a id="ru-format"></a>
-# 🗂️ Формат CodeGraphy Markdown (.cg.md)
 
-CodeGraphy вводит декларативный Markdown-формат для обмена архитектурой ПО между разработчиками, Git-репозиториями и AI-системами.
+## Формат CodeGraphy Markdown (.cg.md)
 
-Документ включает три основные секции:
+Декларативный Markdown-формат для описания архитектуры проекта в Git и передачи контекста AI. Документ состоит из трёх секций:
 
-- **Lanes** — архитектурные направления.
-- **Tasks** — задачи разработки.
-- **Topics** — модули и связи между ними.
+* **Lanes** — архитектурные слои и направления.
 
-Для связей между темами используется синтаксис `[[Topic Name]]`. Пути файлов указываются вложенными элементами Markdown-списка.
+* **Tasks** — задачи разработки.
 
----
+* **Topics** — модули и связи между ними через `[[Topic Name]]`.
 
 <a id="ru-prompt"></a>
-# 🤖 AI-промпт для генерации архитектуры
 
-Скопируйте промпт ниже в ChatGPT, Claude, Gemini или DeepSeek, чтобы сгенерировать архитектуру проекта в формате CodeGraphy.
+## AI-промпт для генерации архитектуры
 
-```text
-Создай полную архитектуру моего проекта
-в формате Markdown CodeGraphy v2.1.
+```
+Создай полную архитектуру моего проекта в формате Markdown CodeGraphy.
 
 Требования:
+- Добавь YAML frontmatter: format: codegraphy-workspace, version: 2.0, workspace_id, name
+- Добавь три раздела: ## Lanes, ## Tasks, ## Topics
+- Формат Lanes: - [lane_id] **Название** | order=0 | color=#38bdf8 | expanded
+- Формат Tasks: ### Task: Название `task_id` (status, lane, linked_topics, description)
+- Формат Topics: ### Topic: Название `topic_id` (status, lane, task, position, description, connects_to, files)
+- Используй [[Название темы]] для связей и вложенный список для путей к файлам.
+- Строй архитектуру строго по реальным файлам проекта, не выдумывая модули.
 
-- Добавь YAML frontmatter:
-  format: codegraphy-workspace
-  version: 2.0
-  workspace_id
-  name
-
-- Добавь три раздела:
-  ## Lanes
-  ## Tasks
-  ## Topics
-
-- Формат Lanes:
-  - [lane_id] **Название** | order=0 | color=#38bdf8 | expanded
-
-- Формат Tasks:
-  ### Task: Название `task_id`
-
-  Обязательные поля:
-  status
-  lane
-  linked_topics
-  description
-
-- Формат Topics:
-  ### Topic: Название `topic_id`
-
-  Обязательные поля:
-  status
-  lane
-  task
-  position
-  description
-  connects_to
-  files
-
-- Используй [[Название темы]] для связей между темами.
-- Пути к файлам указывай вложенными элементами Markdown-списка.
-
-Создай полный, корректный и готовый к импорту документ .cg.md.
-
-Не пропускай важные модули.
-Не выдумывай несуществующие файлы.
-
-Если предоставлен исходный код, строй архитектуру
-на основе его реального содержимого.
 ```
-
----
-
-<a id="ru-example"></a>
-# 🧪 Пример документа .cg.md
-
-Пример: **Smart Home IoT Platform**
-
-```markdown
----
-format: codegraphy-workspace
-version: 2.0
-workspace_id: ws_smart_home
-name: Smart Home IoT Platform
----
-
-# Workspace: Smart Home IoT Platform
-
-## Lanes
-
-- [lane_drivers] **Device Drivers & Protocol** | order=0 | color=#f59e0b | expanded
-- [lane_core] **Automation Engine** | order=1 | color=#38bdf8 | expanded
-- [lane_api] **REST & WebSockets** | order=2 | color=#22c55e | expanded
-
-## Tasks
-
-### Task: Zigbee Integration `task_zigbee_01`
-
-- status: `in_progress`
-- lane: `lane_drivers`
-- linked_topics: `topic_zigbee_handler, topic_device_state`
-- description: Parse MQTT packets and update device state.
-
-## Topics
-
-### Topic: Zigbee MQTT Handler `topic_zigbee_handler`
-
-- status: `in_progress`
-- lane: `lane_drivers`
-- task: `task_zigbee_01`
-- position: `(150.0, 150.0)`
-- description: Subscribe to Zigbee2MQTT topics and decode sensor payloads.
-- connects_to: [[Device State Manager]]
-- files:
-  - `drivers/zigbee/mqtt_listener.py`
-  - `drivers/zigbee/decoders/climate_sensor.py`
-  - `drivers/zigbee/decoders/motion_detector.py`
-```
-
----
-
-<a id="ru-requirements"></a>
-# 🖥️ Системные требования
-
-| Компонент | Требование |
-|---|---|
-| Операционная система | Windows 10 / 11 (64-bit) |
-| Оперативная память (RAM) | Минимум 4 GB, рекомендуется 8 GB |
-| Место на диске | Приблизительно 250 MB |
-| Архитектура | x86_64 |
-
-<a id="ru-checksums"></a>
-# 🔐 Контрольные суммы релизов
-
-SHA-256 можно использовать для проверки целостности скачанных файлов.
-
-| Файл | Версия | Размер | SHA-256 |
-|---|---:|---:|---|
-| CodeGraphy Setup 2.1.1.exe | 2.1.1 | 139.07 MB | `3B8A36A860489E1FBEDCE1BFC4212527445F93342B3ACDA3BC2A7AD1AE59D92C` |
-| CodeGraphy Portable 2.1.1.exe | 2.1.1 | 127.39 MB | `CB4727CF036A83B3EFF324473BB9CCEE54145007A1D9685983B99A6EB6F6920F` |
-
-## Краткая таблица контрольных сумм
-
-| Файл | Размер | SHA-256 |
-|---|---:|---|
-| Setup 2.1.1.exe | 139.07 MB | `3B8A36A860489E1FBEDCE1BFC4212527445F93342B3ACDA3BC2A7AD1AE59D92C` |
-| Portable 2.1.1.exe | 127.39 MB | `CB4727CF036A83B3EFF324473BB9CCEE54145007A1D9685983B99A6EB6F6920F` |
 
 <a id="ru-contacts"></a>
-# 📬 Контакты
 
-- **Telegram:** [@Methyienedloxymethamphetamine](https://t.me/Methyienedloxymethamphetamine)
-- **Discord:** `nevindetto`
+## Контакты
 
----
+* **Pro-версия:** [github.com/Vindettobkb/codegraphy-pro](https://github.com/Vindettobkb/codegraphy-pro)
 
-<div align="center">
+* **Telegram:** [@Methyienedloxymethamphetamine](https://t.me/Methyienedloxymethamphetamine)
 
-**CodeGraphy — Понимай архитектуру. Давай AI правильный контекст.**
-
-*Создано для разработчиков. Разработано для AI-first рабочих процессов.*
-
-</div>
+* **Discord:** `nevindetto`
