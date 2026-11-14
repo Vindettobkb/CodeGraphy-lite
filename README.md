@@ -1,299 +1,193 @@
-<div align="center">
+# CodeGraphy Lite 🌐
 
-# CodeGraphy Lite
+[![PyPI](https://img.shields.io/pypi/v/codegraphy-lite.svg?color=blue)](https://pypi.org/project/codegraphy-lite/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![MCP Spec](https://img.shields.io/badge/MCP-2024--11--05-green.svg)](https://modelcontextprotocol.io/)
 
-### Local-First Visual Architecture Canvas & MCP Server for AI-First Developers
+**CodeGraphy Lite** is the standalone open-source distribution of CodeGraphy. It provides an interactive visual architecture canvas, living dependency graphs, and Model Context Protocol (MCP) server for Python and modern software codebases.
 
-**Understand your architecture. Give AI the right context.**
+Built for developers and AI agents (Claude Code, Cursor, Windsurf, Cline), CodeGraphy Lite turns messy codebases into an intuitive, navigable 2D architectural map.
 
-[Quick Start](https://www.google.com/search?q=%23-en-quickstart) · [Lite vs Pro](https://www.google.com/search?q=%23-en-compare) · [Get CodeGraphy Pro](https://github.com/Vindettobkb/codegraphy-pro)
+---
 
-</div>
+## ✨ Features (1:1 Visual Parity)
 
-## Table of Contents / Содержание
+- 🗺️ **Unified Architecture Graph**: Interactive React Flow graph displaying modules, services, and dependency edges with real-time drag-and-drop layout.
+- 🗂️ **Split Layers & Lanes**: Group architectural topics by workflow stage (`Planning`, `Development`, `Testing`, `Done`).
+- 🔍 **Semantic Zoom**: Multi-level zoom with automatic Level-of-Detail (LOD)—zoom in to inspect function signatures and attached files, zoom out for high-level module topology.
+- 📝 **Portable `.cg.md` Workspaces**: Human-readable Markdown workspace specification format with two-way import/export.
+- ⚡ **Lightweight AST Scanner**: Fast project scanner using Python's standard library `ast.parse()` and regex import matching (scans up to 35 files).
+- 🤖 **STDIO MCP Server (`codegraphy-mcp`)**: Exposes 3 essential architectural intelligence tools to AI assistants via JSON-RPC 2.0.
+- 🔒 **100% Local-First & Private**: No cloud telemetry, no code uploads. Your codebase never leaves your machine.
 
-### English
+---
 
-* [Feature Showcase](https://www.google.com/search?q=%23en-showcase)
+## ⚖️ Lite vs Pro Comparison
 
-* [Problems CodeGraphy Solves](https://www.google.com/search?q=%23en-problems)
+CodeGraphy Lite is fully open-source (MIT). For enterprise repositories, multi-language AST pruning, and deep impact analysis, check out **CodeGraphy Pro**:
 
-* [Quick Start](https://www.google.com/search?q=%23en-quickstart)
+| Capability | CodeGraphy Lite (Open Source) | CodeGraphy Pro (Commercial) |
+| :--- | :---: | :---: |
+| **License** | **MIT (Open Source)** | Commercial / Enterprise |
+| **Visual Architecture Canvas** | ✅ Full Visual UI | ✅ Full Visual UI |
+| **Split Layers & Semantic Zoom** | ✅ Yes | ✅ Yes |
+| **`.cg.md` Workspace Import/Export** | ✅ Yes | ✅ Yes |
+| **Max Scanned Files** | **35 files** | **Unlimited** (Multi-repo) |
+| **AST Parser** | Python stdlib `ast.parse()` | Proprietary Polyglot AST Engine (PY/TS/GO/RS/C#/JAVA) |
+| **Token Optimization** | Standard AST Signatures | **AST Smart Context (-85% Token Reduction)** |
+| **Context Inspector** | Basic Preview | **Hybrid Context Inspector (Full / AST / Exclude)** |
+| **Blast Radius Analysis** | — *(PRO Badge)* | ✅ Reverse Call Graph Impact Scoring |
+| **Test Impact Engine** | — *(PRO Badge)* | ✅ Selective Test Discovery & Safe Runner |
+| **Git Architecture Diff** | — *(PRO Badge)* | ✅ Branch/PR Visual Architecture Diff Overlay |
+| **MCP Tools** | **3 Core Tools** | **Full 11-Tool Suite** |
 
-* [Lite vs Pro](https://www.google.com/search?q=%23en-compare)
+---
 
-* [CodeGraphy Markdown Format (.cg.md)](https://www.google.com/search?q=%23en-format)
+## 🚀 Quickstart
 
-* [AI Prompt for Architecture Generation](https://www.google.com/search?q=%23en-prompt)
+### 1. Installation
 
-* [Contacts](https://www.google.com/search?q=%23en-contacts)
+Install via pip:
 
-### Русский
-
-* [Демонстрация возможностей](https://www.google.com/search?q=%23ru-showcase)
-
-* [Какие проблемы решает CodeGraphy](https://www.google.com/search?q=%23ru-problems)
-
-* [Быстрый старт](https://www.google.com/search?q=%23ru-quickstart)
-
-* [Lite и Pro](https://www.google.com/search?q=%23ru-compare)
-
-* [Формат CodeGraphy Markdown (.cg.md)](https://www.google.com/search?q=%23ru-format)
-
-* [AI-промпт для генерации архитектуры](https://www.google.com/search?q=%23ru-prompt)
-
-* [Контакты](https://www.google.com/search?q=%23ru-contacts)
-
-# English
-
-<a id="en-showcase"></a>
-
-## Feature Showcase
-
-### 1. Auto-Discovery & Living Architecture Map
-
-Automatically scans repositories, discovers modules, extracts dependencies, and generates a reactive architecture graph.
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/115c3574-b887-4214-befb-fdb27c5a76b4" alt="Scan and Living Architecture Graph" width="850">
-</p>
-
-### 2. Layer Filtering & IDE Deep Linking
-
-Filter architectural layers (`Frontend / UI`, `Backend / API & Services`, `Split Layers`) and jump directly to the corresponding file and line in PyCharm, VS Code, or Cursor.
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/67355e0c-ab08-4b67-898f-ee6171afbc63" alt="Layer Filtering and IDE Integration" width="850">
-</p>
-
-### 3. AI-Powered Architectural Context
-
-Connect Claude Code, Cursor, Windsurf, or local models using structured graph context instead of dumping raw files.
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/ca3fc0fe-44fd-4f0a-a64e-5aa5c91e3756" alt="AI Architecture Analysis" width="850">
-</p>
-
-<a id="en-problems"></a>
-
-## Problems CodeGraphy Solves
-
-1. **Context Window Bloat** — Sending entire source files to LLMs wastes tokens, slows down responses, and dilutes attention on the architecture that matters.
-
-2. **AI Hallucinations** — Without clear module boundaries and dependency direction, coding assistants invent non-existent interfaces and break layer rules.
-
-3. **Fragmented Architectural Knowledge** — Real features span UI components, API routes, services, and storage. CodeGraphy keeps the whole map interactive in one place.
-
-<a id="en-quickstart"></a>
-
-## Quick Start
-
-Install **CodeGraphy Lite** locally (requires Python 3.10+):
-
-```
+```bash
 pip install codegraphy-lite
-
 ```
 
-Or install directly from GitHub:
+Or install from source for development:
 
-```
-git clone https://github.com/Vindettobkb/codegraphy-lite.git
+```bash
+git clone https://github.com/codegraphy-dev/codegraphy-lite.git
 cd codegraphy-lite
 pip install -e .
-
 ```
 
-Launch the local workspace UI:
+### 2. Launch the Web UI
 
-```
-codegraphy-lite --port 8000
+Run `codegraphy-lite` pointing to any project directory:
 
-```
+```bash
+# Scan and visualize the current directory
+codegraphy-lite
 
-Then open `http://127.0.0.1:8000` in your browser.
-
-<a id="en-compare"></a>
-
-## Lite (Open Source) vs Pro
-
-**CodeGraphy Lite** gives you the interactive architecture canvas, layer views, `.cg.md` import/export, and core MCP tools for repositories up to 35 files. [**CodeGraphy Pro**](https://github.com/Vindettobkb/codegraphy-pro) unlocks full-repository scale, AST Smart Context compression, and static drift analysis.
-
-| Capability | CodeGraphy Lite | CodeGraphy Pro | 
-| ----- | ----- | ----- | 
-| Interactive Architecture Canvas & Split Layers | Included | Included | 
-| Direct Neighbors (1-Hop) & IDE Deep Linking | Included | Included | 
-| `.cg.md` Workspace Export & Import | Included | Included | 
-| Project Scan Limit | Up to 35 files | Unlimited | 
-| STDIO MCP Server Tools | 3 core tools | Full 11 tools | 
-| AST Smart Context (\~82.8% token savings) | — | Included | 
-| Hybrid Context Inspector (`Full / AST / Off`) & Secret Redaction | — | Included | 
-| Architecture Analysis (`Tarjan O(V+E)`), Blast Radius & Git Diff | — | Included | 
-
-<a id="en-format"></a>
-
-## CodeGraphy Markdown Format (.cg.md)
-
-CodeGraphy uses a declarative Markdown format for sharing software architecture across developers, Git repositories, and AI tools. Each `.cg.md` file has three sections:
-
-* **Lanes** — architectural layers or areas.
-
-* **Tasks** — development tasks.
-
-* **Topics** — modules and their `[[Topic Name]]` connections.
-
-<a id="en-prompt"></a>
-
-## AI Prompt for Architecture Generation
-
-Copy the prompt below into ChatGPT, Claude, Gemini, or DeepSeek to generate an import-ready `.cg.md` file:
-
-```
-Generate a complete software architecture for my project using the CodeGraphy Markdown format.
-
-Requirements:
-- Include YAML frontmatter: format: codegraphy-workspace, version: 2.0, workspace_id, name
-- Include three sections: ## Lanes, ## Tasks, ## Topics
-- Lanes format: - [lane_id] **Title** | order=0 | color=#38bdf8 | expanded
-- Tasks format: ### Task: Title `task_id` with status, lane, linked_topics, description
-- Topics format: ### Topic: Title `topic_id` with status, lane, task, position, description, connects_to, files
-- Use [[Topic Name]] for topic connections and indented list items for file paths.
-- Derive the architecture strictly from actual source files without inventing modules.
-
+# Or specify a directory and custom port
+codegraphy-lite /path/to/my-project --port 8000
 ```
 
-<a id="en-contacts"></a>
+The server automatically scans the project (up to 35 files) and opens `http://127.0.0.1:8000` in your default web browser.
 
-## Contacts
+---
 
-* **Pro Edition:** [github.com/Vindettobkb/codegraphy-pro](https://github.com/Vindettobkb/codegraphy-pro)
+## 🤖 Model Context Protocol (MCP) Setup
 
-* **Telegram:** [@Methyienedloxymethamphetamine](https://t.me/Methyienedloxymethamphetamine)
+CodeGraphy Lite includes a built-in MCP server that communicates over STDIO using the `codegraphy-mcp` CLI.
 
-* **Discord:** `nevindetto`
+### Available MCP Tools
 
-# Русский
+1. `list_workspace_topics`: Lists all architectural topics, status, lane, files count, and descriptions.
+2. `get_topic_context`: Fetches topic details, 1-hop connected dependencies, and AST-extracted class/function signatures.
+3. `get_architecture_summary`: Returns project architecture metrics, dependency statistics, and status distribution.
 
-<a id="ru-showcase"></a>
+### Configuration for Claude Code
 
-## Демонстрация возможностей
+Add the following to your Claude Code configuration (`~/.claude.json` or project `.mcp.json`):
 
-### 1. Auto-Discovery & Living Architecture Map
-
-Автоматически сканирует репозиторий, находит модули, извлекает зависимости и строит интерактивный граф архитектуры.
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/115c3574-b887-4214-befb-fdb27c5a76b4" alt="Scan and Living Architecture Graph" width="850">
-</p>
-
-### 2. Layer Filtering & IDE Deep Linking
-
-Позволяет разделять архитектурные слои (`Frontend / UI`, `Backend / API & Services`, `Split Layers`) и открывать нужный файл и строку прямо в PyCharm, VS Code или Cursor.
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/67355e0c-ab08-4b67-898f-ee6171afbc63" alt="Layer Filtering and IDE Integration" width="850">
-</p>
-
-### 3. AI-Powered Architectural Context
-
-Подключайте Claude Code, Cursor, Windsurf или локальные модели через структурированный контекст графа вместо отправки сырых файлов.
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/ca3fc0fe-44fd-4f0a-a64e-5aa5c91e3756" alt="AI Architecture Analysis" width="850">
-</p>
-
-<a id="ru-problems"></a>
-
-## Какие проблемы решает CodeGraphy
-
-1. **Переполнение контекстного окна** — отправка целых исходников в LLM сжигает токены и ухудшает точность модели.
-
-2. **Галлюцинации AI** — без понимания границ слоёв и зависимостей ассистент начинает придумывать несуществующие интерфейсы.
-
-3. **Разрозненная архитектура** — фичи затрагивают UI, API, сервисы и хранилище сразу. CodeGraphy держит всю карту связей перед глазами.
-
-<a id="ru-quickstart"></a>
-
-## Быстрый старт
-
-Установите **CodeGraphy Lite** (требуется Python 3.10+):
-
-```
-pip install codegraphy-lite
-
+```json
+{
+  "mcpServers": {
+    "codegraphy": {
+      "command": "codegraphy-mcp",
+      "env": {
+        "CODEGRAPHY_ROOT": "/absolute/path/to/your/project"
+      }
+    }
+  }
+}
 ```
 
-Или из репозитория GitHub:
+### Configuration for Cursor
 
-```
-git clone https://github.com/Vindettobkb/codegraphy-lite.git
-cd codegraphy-lite
-pip install -e .
+In Cursor settings (`Cursor Settings -> Features -> MCP -> Add new MCP server`):
 
-```
+- **Name**: `codegraphy`
+- **Type**: `command`
+- **Command**: `codegraphy-mcp`
 
-Запуск локального интерфейса:
+Or add to your Cursor configuration file:
 
-```
-codegraphy-lite --port 8000
-
-```
-
-После запуска откройте `http://127.0.0.1:8000` в браузере.
-
-<a id="ru-compare"></a>
-
-## Lite и Pro
-
-**CodeGraphy Lite** — бесплатная open-source версия с интерактивным графом, слоями, форматом `.cg.md` и базовыми MCP-инструментами (до 35 файлов). [**CodeGraphy Pro**](https://github.com/Vindettobkb/codegraphy-pro) снимает лимит файлов и добавляет AST-сжатие контекста, инспектор токенов и статический анализ архитектуры.
-
-| Возможность | CodeGraphy Lite | CodeGraphy Pro | 
-| ----- | ----- | ----- | 
-| Интерактивный граф архитектуры и Split Layers | Есть | Есть | 
-| Direct Neighbors (1-Hop) и переходы в IDE | Есть | Есть | 
-| Экспорт и импорт `.cg.md` | Есть | Есть | 
-| Лимит сканирования проекта | До 35 файлов | Без ограничений | 
-| MCP-сервер (STDIO) | 3 базовых инструмента | Все 11 инструментов | 
-| AST Smart Context (\~82.8% экономии токенов) | — | Есть | 
-| Hybrid Context Inspector (`Full / AST / Off`) и скрытие секретов | — | Есть | 
-| Architecture Analysis (`Tarjan O(V+E)`), Blast Radius и Git Diff | — | Есть | 
-
-<a id="ru-format"></a>
-
-## Формат CodeGraphy Markdown (.cg.md)
-
-Декларативный Markdown-формат для описания архитектуры проекта в Git и передачи контекста AI. Документ состоит из трёх секций:
-
-* **Lanes** — архитектурные слои и направления.
-
-* **Tasks** — задачи разработки.
-
-* **Topics** — модули и связи между ними через `[[Topic Name]]`.
-
-<a id="ru-prompt"></a>
-
-## AI-промпт для генерации архитектуры
-
-```
-Создай полную архитектуру моего проекта в формате Markdown CodeGraphy.
-
-Требования:
-- Добавь YAML frontmatter: format: codegraphy-workspace, version: 2.0, workspace_id, name
-- Добавь три раздела: ## Lanes, ## Tasks, ## Topics
-- Формат Lanes: - [lane_id] **Название** | order=0 | color=#38bdf8 | expanded
-- Формат Tasks: ### Task: Название `task_id` (status, lane, linked_topics, description)
-- Формат Topics: ### Topic: Название `topic_id` (status, lane, task, position, description, connects_to, files)
-- Используй [[Название темы]] для связей и вложенный список для путей к файлам.
-- Строй архитектуру строго по реальным файлам проекта, не выдумывая модули.
-
+```json
+{
+  "mcpServers": {
+    "codegraphy": {
+      "command": "codegraphy-mcp"
+    }
+  }
+}
 ```
 
-<a id="ru-contacts"></a>
+---
 
-## Контакты
+## 🛠️ CLI Reference
 
-* **Pro-версия:** [github.com/Vindettobkb/codegraphy-pro](https://github.com/Vindettobkb/codegraphy-pro)
+```
+usage: codegraphy-lite [-h] [--port PORT] [--host HOST] [--no-browser] [--scan] [-v] [path]
 
-* **Telegram:** [@Methyienedloxymethamphetamine](https://t.me/Methyienedloxymethamphetamine)
+CodeGraphy Lite — Standalone Open-Source Visual Architecture Graph & MCP Server
 
-* **Discord:** `nevindetto`
+positional arguments:
+  path                  Target project directory to visualize (default: current directory)
+
+options:
+  -h, --help            Show this help message and exit
+  --port PORT           HTTP server port (default: 8000)
+  --host HOST           HTTP server bind host (default: 127.0.0.1)
+  --no-browser          Do not automatically launch the browser
+  --scan                Force automatic project directory scan on startup (up to 35 files)
+  -v, --version         Show program's version number and exit
+```
+
+---
+
+## 📁 Repository Structure
+
+```
+codegraphy-lite/
+├── LICENSE                 # MIT License
+├── README.md               # Documentation
+├── pyproject.toml          # PEP 517/621 package metadata & entrypoints
+├── MANIFEST.in             # Manifest for sdist packaging
+├── .gitignore              # Git ignore rules
+├── codegraphy_lite/        # Core Python package
+│   ├── __init__.py         # Version definition (1.0.0)
+│   ├── cli.py              # `codegraphy-lite` CLI entrypoint
+│   ├── mcp.py              # `codegraphy-mcp` STDIO JSON-RPC 2.0 server
+│   ├── models.py           # Pydantic models for graph & workspace
+│   ├── scanner.py          # Safe stdlib AST scanner (max 35 files)
+│   ├── server.py           # FastAPI REST & WebSocket server
+│   ├── storage.py          # Local persistence & .cg.md codec
+│   └── web/                # Bundled visual UI assets
+│       ├── index.html
+│       ├── assets/
+│       │   ├── codegraphy-lite-ui.js   # Pro features & modal controller
+│       │   ├── codegraphy-lite-ui.css  # Pro badges & modal styling
+│       │   └── ...                     # Built React Flow assets
+└── tests/                  # Unit test suite
+    ├── test_scanner.py
+    ├── test_mcp.py
+    └── test_server.py
+```
+
+---
+
+## 🧪 Running Tests
+
+```bash
+pip install -e ".[test]"
+pytest tests/ -v
+```
+
+---
+
+## 📄 License
+
+CodeGraphy Lite is licensed under the [MIT License](LICENSE).
