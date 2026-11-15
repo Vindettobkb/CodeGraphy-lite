@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CodeGraphy — Visual Architecture Canvas &amp; AST Context Engine</title>
-  <link rel="icon" type="image/png" href="data:image/png;base64,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" />
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -80,12 +79,11 @@
       z-index: 20;
       transition: transform 0.15s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     }
-    .node-handle:hover,
-    .node-handle-active {
+    .node-handle:hover {
       transform: translate(-50%, -50%) scale(1.35);
-      border-color: #38BDF8 !important;
-      background-color: #38BDF8 !important;
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.95) !important;
+      border-color: #38BDF8;
+      background-color: #38BDF8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.9);
     }
     .node-selected .node-handle {
       border-color: #38BDF8;
@@ -132,6 +130,8 @@
       background: #38BDF8;
     }
   </style>
+  <!-- Umami Cloud Analytics: replace 55661301-daa7-43ea-9393-336dd1c3b3db with your Website ID from cloud.umami.is -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="55661301-daa7-43ea-9393-336dd1c3b3db"></script>
 </head>
 <body class="antialiased selection:bg-sky-500/20 selection:text-sky-300">
 
@@ -145,7 +145,13 @@
   <header class="glass-nav sticky top-0 z-40 border-b border-slate-800/80">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
       <a href="#top" class="flex items-center gap-2.5 text-slate-100 hover:opacity-90">
-        <img src="data:image/png;base64,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" alt="CodeGraphy" class="h-7 w-7 rounded-lg" />
+        <svg class="h-6 w-6 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="8.5" y="14" width="7" height="7" rx="1.5"></rect>
+          <path d="M6.5 10v1.5a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5V10"></path>
+          <line x1="12" y1="13" x2="12" y2="14"></line>
+        </svg>
         <span class="text-base font-semibold tracking-tight">CodeGraphy</span>
       </a>
 
@@ -157,11 +163,11 @@
       </nav>
 
       <div class="flex items-center gap-2.5">
-        <a href="https://github.com/Vindettobkb/codegraphy-lite" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-lg border border-slate-700/80 bg-slate-900/80 px-3 py-1.5 text-xs font-medium text-slate-200 transition-colors hover:border-slate-600 hover:bg-slate-800">
+        <a href="https://github.com/Vindettobkb/codegraphy-lite" target="_blank" rel="noopener noreferrer" data-umami-event="click-github" data-umami-event-placement="navbar" class="inline-flex items-center gap-1.5 rounded-lg border border-slate-700/80 bg-slate-900/80 px-3 py-1.5 text-xs font-medium text-slate-200 transition-colors hover:border-slate-600 hover:bg-slate-800">
           <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           <span>GitHub</span>
         </a>
-        <a href="https://t.me/Methyienedloxymethamphetamine" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-lg bg-sky-500 px-3.5 py-1.5 text-xs font-semibold text-slate-950 shadow-lg shadow-sky-500/20 transition-all hover:bg-sky-400">
+        <a href="https://t.me/Methyienedloxymethamphetamine" target="_blank" rel="noopener noreferrer" data-umami-event="click-get-pro" data-umami-event-placement="navbar" class="inline-flex items-center gap-1.5 rounded-lg bg-sky-500 px-3.5 py-1.5 text-xs font-semibold text-slate-950 shadow-lg shadow-sky-500/20 transition-all hover:bg-sky-400">
           <span>Get Pro &middot; $19</span>
         </a>
       </div>
@@ -188,12 +194,12 @@
       <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <div class="flex w-full max-w-md items-center justify-between rounded-lg border border-slate-700/90 bg-surface px-3.5 py-2.5 font-mono text-xs text-slate-200 sm:w-auto sm:min-w-[330px]">
           <span class="truncate"><span class="text-slate-500">$</span> pip install codegraphy-lite</span>
-          <button id="copy-install-btn" type="button" class="ml-3 inline-flex shrink-0 items-center gap-1 rounded border border-slate-700 bg-elevated px-2 py-1 font-sans text-[11px] font-medium text-slate-300 transition-colors hover:border-slate-600 hover:text-white">
+          <button id="copy-install-btn" type="button" data-umami-event="copy-pip-install" data-umami-event-placement="hero" class="ml-3 inline-flex shrink-0 items-center gap-1 rounded border border-slate-700 bg-elevated px-2 py-1 font-sans text-[11px] font-medium text-slate-300 transition-colors hover:border-slate-600 hover:text-white">
             <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
             <span>Copy</span>
           </button>
         </div>
-        <a href="#playground" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-500/20 transition-all hover:bg-sky-400 sm:w-auto">
+        <a href="#playground" data-umami-event="click-try-demo" data-umami-event-placement="hero" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-500/20 transition-all hover:bg-sky-400 sm:w-auto">
           <span>Try Live Demo</span>
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
@@ -230,16 +236,16 @@
         <p class="mt-1.5 text-sm text-slate-400">Interactive UI preview (<span class="font-mono text-slate-200">novapay-checkout</span> demo). Drag nodes, pull edges from ports to connect, or toggle <span class="font-mono text-slate-200">FULL / AST / OFF</span>.</p>
       </div>
       <div class="flex flex-wrap gap-2" id="view-mode-tabs">
-        <button type="button" data-view="unified" class="view-tab active rounded-lg border border-sky-500/50 bg-sky-500/15 px-3 py-1.5 text-xs font-semibold text-sky-300 transition-colors">
+        <button type="button" data-view="unified" data-umami-event="playground-view" data-umami-event-tab="unified" class="view-tab active rounded-lg border border-sky-500/50 bg-sky-500/15 px-3 py-1.5 text-xs font-semibold text-sky-300 transition-colors">
           Unified Graph
         </button>
-        <button type="button" data-view="layers" class="view-tab rounded-lg border border-slate-800 bg-surface px-3 py-1.5 text-xs font-medium text-slate-400 transition-colors hover:border-slate-700 hover:text-slate-200">
+        <button type="button" data-view="layers" data-umami-event="playground-view" data-umami-event-tab="layers" class="view-tab rounded-lg border border-slate-800 bg-surface px-3 py-1.5 text-xs font-medium text-slate-400 transition-colors hover:border-slate-700 hover:text-slate-200">
           Split Layers
         </button>
-        <button type="button" data-view="linter" class="view-tab rounded-lg border border-slate-800 bg-surface px-3 py-1.5 text-xs font-medium text-slate-400 transition-colors hover:border-slate-700 hover:text-slate-200">
+        <button type="button" data-view="linter" data-umami-event="playground-view" data-umami-event-tab="linter" class="view-tab rounded-lg border border-slate-800 bg-surface px-3 py-1.5 text-xs font-medium text-slate-400 transition-colors hover:border-slate-700 hover:text-slate-200">
           Architecture Linter
         </button>
-        <button type="button" data-view="blast" class="view-tab rounded-lg border border-slate-800 bg-surface px-3 py-1.5 text-xs font-medium text-slate-400 transition-colors hover:border-slate-700 hover:text-slate-200">
+        <button type="button" data-view="blast" data-umami-event="playground-view" data-umami-event-tab="blast" class="view-tab rounded-lg border border-slate-800 bg-surface px-3 py-1.5 text-xs font-medium text-slate-400 transition-colors hover:border-slate-700 hover:text-slate-200">
           Blast Radius
         </button>
       </div>
@@ -257,7 +263,7 @@
         </div>
         <div class="flex items-center gap-3 font-mono text-[11px]">
           <span class="hidden text-slate-400 sm:inline">MCP: <span class="text-emerald-400">11 tools ready</span></span>
-          <button id="reset-graph-btn" type="button" class="rounded border border-slate-700 bg-surface px-2 py-0.5 text-slate-300 transition-colors hover:border-slate-500 hover:text-white">Reset Graph</button>
+          <button id="reset-graph-btn" type="button" data-umami-event="playground-reset-graph" class="rounded border border-slate-700 bg-surface px-2 py-0.5 text-slate-300 transition-colors hover:border-slate-500 hover:text-white">Reset Graph</button>
           <span id="status-pill" class="rounded border border-sky-500/30 bg-sky-500/10 px-2 py-0.5 text-sky-300">Unified Graph</span>
         </div>
       </div>
@@ -332,7 +338,7 @@
             </div>
           </div>
 
-          <button id="copy-mcp-btn" type="button" class="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-slate-700 bg-elevated px-3 py-2 font-mono text-xs font-medium text-slate-200 transition-colors hover:border-sky-500/50 hover:text-sky-300">
+          <button id="copy-mcp-btn" type="button" data-umami-event="copy-compiled-context" class="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-slate-700 bg-elevated px-3 py-2 font-mono text-xs font-medium text-slate-200 transition-colors hover:border-sky-500/50 hover:text-sky-300">
             <span>Copy Compiled Context Payload</span>
           </button>
         </div>
@@ -352,13 +358,13 @@
           </p>
 
           <div class="mt-6 flex flex-wrap gap-2" id="mode-buttons">
-            <button type="button" data-mode="raw" class="mode-btn rounded-lg border border-slate-700 bg-elevated px-3.5 py-2 text-xs font-medium text-slate-300 transition-colors hover:border-slate-600">
+            <button type="button" data-mode="raw" data-umami-event="calc-mode" data-umami-event-mode="raw" class="mode-btn rounded-lg border border-slate-700 bg-elevated px-3.5 py-2 text-xs font-medium text-slate-300 transition-colors hover:border-slate-600">
               Raw Full Files
             </button>
-            <button type="button" data-mode="hybrid" class="mode-btn active rounded-lg border border-sky-500/50 bg-sky-500/15 px-3.5 py-2 text-xs font-semibold text-sky-300 transition-colors">
+            <button type="button" data-mode="hybrid" data-umami-event="calc-mode" data-umami-event-mode="hybrid" class="mode-btn active rounded-lg border border-sky-500/50 bg-sky-500/15 px-3.5 py-2 text-xs font-semibold text-sky-300 transition-colors">
               Hybrid Smart Context
             </button>
-            <button type="button" data-mode="ast" class="mode-btn rounded-lg border border-slate-700 bg-elevated px-3.5 py-2 text-xs font-medium text-slate-300 transition-colors hover:border-slate-600">
+            <button type="button" data-mode="ast" data-umami-event="calc-mode" data-umami-event-mode="ast" class="mode-btn rounded-lg border border-slate-700 bg-elevated px-3.5 py-2 text-xs font-medium text-slate-300 transition-colors hover:border-slate-600">
               AST Skeletons Only
             </button>
           </div>
@@ -505,16 +511,16 @@
       </div>
 
       <div class="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <a href="https://github.com/Vindettobkb/codegraphy-lite" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-slate-700 bg-surface px-5 py-2.5 text-sm font-medium text-slate-200 transition-colors hover:border-slate-600 hover:bg-elevated sm:w-auto">
+        <a href="https://github.com/Vindettobkb/codegraphy-lite" target="_blank" rel="noopener noreferrer" data-umami-event="click-github" data-umami-event-placement="compare" class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-slate-700 bg-surface px-5 py-2.5 text-sm font-medium text-slate-200 transition-colors hover:border-slate-600 hover:bg-elevated sm:w-auto">
           <span>Open codegraphy-lite on GitHub</span>
         </a>
-        <a href="https://t.me/Methyienedloxymethamphetamine" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-500/20 transition-all hover:bg-sky-400 sm:w-auto">
+        <a href="https://t.me/Methyienedloxymethamphetamine" target="_blank" rel="noopener noreferrer" data-umami-event="click-get-pro" data-umami-event-placement="compare" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-sky-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-500/20 transition-all hover:bg-sky-400 sm:w-auto">
           <span>Get Pro ($19 &middot; DM on Telegram)</span>
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       </div>
       <p class="mt-3 text-center text-xs text-slate-500">
-        Windows 10/11 (x64) &middot; One-time payment, no subscription. No Telegram? Email <a href="mailto:vindettor@gmail.com" class="text-slate-300 underline decoration-slate-700 hover:text-sky-400">vindettor@gmail.com</a>
+        Windows 10/11 (x64) &middot; One-time payment, no subscription. No Telegram? Email <a href="mailto:vindettor@gmail.com" data-umami-event="click-email-pro" data-umami-event-placement="compare" class="text-slate-300 underline decoration-slate-700 hover:text-sky-400">vindettor@gmail.com</a>
       </p>
     </div>
   </section>
@@ -524,9 +530,9 @@
     <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-500 sm:flex-row sm:px-6">
       <div>CodeGraphy &middot; Local-First Context Intelligence &amp; Architecture Canvas</div>
       <div class="flex items-center gap-5">
-        <a href="https://github.com/Vindettobkb/codegraphy-lite" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300">GitHub (Lite)</a>
-        <a href="https://t.me/Methyienedloxymethamphetamine" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300">Telegram (Pro)</a>
-        <a href="mailto:vindettor@gmail.com" class="hover:text-slate-300">vindettor@gmail.com</a>
+        <a href="https://github.com/Vindettobkb/codegraphy-lite" target="_blank" rel="noopener noreferrer" data-umami-event="click-github" data-umami-event-placement="footer" class="hover:text-slate-300">GitHub (Lite)</a>
+        <a href="https://t.me/Methyienedloxymethamphetamine" target="_blank" rel="noopener noreferrer" data-umami-event="click-get-pro" data-umami-event-placement="footer" class="hover:text-slate-300">Telegram (Pro)</a>
+        <a href="mailto:vindettor@gmail.com" data-umami-event="click-email-pro" data-umami-event-placement="footer" class="hover:text-slate-300">vindettor@gmail.com</a>
       </div>
     </div>
   </footer>
@@ -829,72 +835,26 @@
           <div class="mt-1 truncate font-mono text-[11px] font-semibold text-slate-100 pointer-events-none">${node.name}</div>
         `;
 
-        // Click-to-connect on port (1st click starts wire, 2nd click on target connects)
+        // Handle drag-to-connect from port
         el.querySelectorAll(".node-handle").forEach((handle) => {
-          if (connectState && connectState.fromId === node.id && connectState.fromSide === handle.dataset.port) {
-            handle.classList.add("node-handle-active");
-          }
           handle.addEventListener("pointerdown", (e) => {
             e.stopPropagation();
             e.preventDefault();
             const rect = stage.getBoundingClientRect();
-            if (!connectState) {
-              connectState = {
-                fromId: node.id,
-                fromSide: handle.dataset.port,
-                curX: e.clientX - rect.left,
-                curY: e.clientY - rect.top
-              };
-              renderPlayground();
-            } else {
-              const toId = node.id;
-              const toSide = handle.dataset.port;
-              if (toId !== connectState.fromId) {
-                const exists = EDGES.some(
-                  (ed) => ed.from === connectState.fromId && ed.to === toId && ed.fromSide === connectState.fromSide && ed.toSide === toSide
-                );
-                if (!exists) {
-                  EDGES.push({
-                    from: connectState.fromId,
-                    to: toId,
-                    fromSide: connectState.fromSide,
-                    toSide: toSide,
-                    cycle: false
-                  });
-                  showToast("Connected module edge");
-                }
-              }
-              connectState = null;
-              renderPlayground();
-            }
+            connectState = {
+              fromId: node.id,
+              fromSide: handle.dataset.port,
+              curX: e.clientX - rect.left,
+              curY: e.clientY - rect.top
+            };
+            drawEdges();
           });
         });
 
-        // Handle node drag & click (also completes click-to-connect if dropped/clicked on node body)
+        // Handle node drag & click selection
         el.addEventListener("pointerdown", (e) => {
           if (e.target.closest(".node-handle")) return;
           e.preventDefault();
-          if (connectState) {
-            if (node.id !== connectState.fromId) {
-              const exists = EDGES.some(
-                (ed) => ed.from === connectState.fromId && ed.to === node.id && ed.fromSide === connectState.fromSide && ed.toSide === "left"
-              );
-              if (!exists) {
-                EDGES.push({
-                  from: connectState.fromId,
-                  to: node.id,
-                  fromSide: connectState.fromSide,
-                  toSide: "left",
-                  cycle: false
-                });
-                showToast("Connected module edge");
-              }
-            }
-            connectState = null;
-            selectedNodeId = node.id;
-            renderPlayground();
-            return;
-          }
           selectedNodeId = node.id;
           dragState = {
             node: node,
@@ -971,7 +931,28 @@
         dragState = null;
         if (!wasMoved) renderPlayground();
       }
-      if (connectState && !e.target.closest(".node-handle") && !e.target.closest("[data-node-id]")) {
+      if (connectState) {
+        const targetEl = document.elementFromPoint(e.clientX, e.clientY);
+        const portEl = targetEl && targetEl.closest(".node-handle");
+        const nodeEl = targetEl && targetEl.closest("[data-node-id]");
+        const toId = portEl ? portEl.dataset.node : nodeEl ? nodeEl.dataset.nodeId : null;
+        const toSide = portEl ? portEl.dataset.port : "left";
+
+        if (toId && toId !== connectState.fromId) {
+          const exists = EDGES.some(
+            (ed) => ed.from === connectState.fromId && ed.to === toId && ed.fromSide === connectState.fromSide && ed.toSide === toSide
+          );
+          if (!exists) {
+            EDGES.push({
+              from: connectState.fromId,
+              to: toId,
+              fromSide: connectState.fromSide,
+              toSide: toSide,
+              cycle: false
+            });
+            showToast("Connected module edge");
+          }
+        }
         connectState = null;
         renderPlayground();
       }
@@ -1010,12 +991,6 @@
     });
 
     window.addEventListener("resize", () => drawEdges());
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && connectState) {
-        connectState = null;
-        renderPlayground();
-      }
-    });
 
     document.getElementById("copy-mcp-btn").addEventListener("click", async () => {
       const payload = NODES.filter((n) => n.mode !== "off")
