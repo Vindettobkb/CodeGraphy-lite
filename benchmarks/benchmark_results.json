@@ -1,0 +1,45 @@
+{
+  "results": [
+    {
+      "task_id": "HTTPX-1",
+      "repo": "httpx",
+      "commit": "1e110964736a95d822144390b99d7ecf17fca527",
+      "title": "Fixed `iter_text` adding an empty string (#2998)",
+      "modes": {
+        "Baseline": {
+          "mode": "Baseline",
+          "tokens": 25993,
+          "tool_calls": 7,
+          "iterations": 1,
+          "passed": true,
+          "details": {
+            "read_files_count": 3,
+            "grep_queries": [
+              "iter_text",
+              "TextChunker"
+            ]
+          }
+        },
+        "CodeGraphy Lite": {
+          "mode": "CodeGraphy Lite",
+          "tokens": 5996,
+          "tool_calls": 6,
+          "iterations": 1,
+          "passed": true,
+          "details": {
+            "topics_queried": [
+              "_decoders",
+              "_models"
+            ],
+            "missing_topics": []
+          }
+        },
+        "CodeGraphy Pro (Ref)": {
+          "tokens": 8367,
+          "tool_calls": 8,
+          "passed": true
+        }
+      }
+    }
+  ]
+}
