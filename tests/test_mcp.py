@@ -137,7 +137,7 @@ def test_mcp_tools_call_workflow():
         assert "CodeGraphy Pro" in res_pro["result"]["content"][0]["text"]
 
 
-def test_mcp_truncation_under_35_files():
+def test_mcp_truncation_under_150_files():
     with tempfile.TemporaryDirectory() as tmpdir:
         tmppath = Path(tmpdir)
         for i in range(5):
@@ -184,63 +184,44 @@ def test_mcp_truncation_under_35_files():
         assert "limit reached" not in err_msg
 
 
-def test_mcp_truncation_over_35_files_and_actionable_error():
+def test_mcp_truncation_over_150_files_and_actionable_error():
     with tempfile.TemporaryDirectory() as tmpdir:
         tmppath = Path(tmpdir)
-        # Create 40 files, with subpackage
+        # Create 162 files, with subpackage
         sub = tmppath / "billing"
         sub.mkdir()
         (sub / "invoice_service.py").write_text("class InvoiceService: pass\n", encoding="utf-8")
         (sub / "payment_gateway.py").write_text("class PaymentGateway: pass\n", encoding="utf-8")
 
-        for i in range(38):
+        for i in range(160):
             (tmppath / f"mod_{i:02d}.py").write_text(f"def f_{i}(): pass\n", encoding="utf-8")
 
         from codegraphy_lite.scanner import build_graph_and_workspace, scan_project
         preview = scan_project(tmppath)
         assert preview.truncated is True
-        assert preview.total_discovered_files == 40
-        assert preview.indexed_count == 35
+        assert preview.total_discovered_files == 162
+        assert preview.indexed_count == 150
 
         graph, ws = build_graph_and_workspace(preview)
         save_graph(graph, tmppath)
 
         server = CodeGraphyLiteMCP(root_dir=tmppath)
 
-        # 1. list_workspace_topics has truncation metadata
-        call_req = {
-            "jsonrpc": "2.0",
-            "id": 30,
-            "method": "tools/call",
-            "params": {
-                "name": "list_workspace_topics",
-                "arguments": {},
-            },
-        }
-        res = server.dispatch(call_req)
-        data = json.loads(res["result"]["content"][0]["text"])
+        # Inspect the tool data directly: the JSON-RPC text response has a
+        # separate 32 KB payload cap and is intentionally truncated at 150 topics.
+        data = server.handle_list_workspace_topics({})
         assert data["truncated"] is True
-        assert data["indexed_count"] == 35
-        assert data["total_discovered_files"] == 40
-        assert data["skipped_count"] == 5
-        assert len(data["skipped_files"]) == 5
+        assert data["indexed_count"] == 150
+        assert data["total_discovered_files"] == 162
+        assert data["skipped_count"] == 12
+        assert len(data["skipped_files"]) == 12
 
         # 2. get_architecture_summary has truncation metadata
-        sum_req = {
-            "jsonrpc": "2.0",
-            "id": 31,
-            "method": "tools/call",
-            "params": {
-                "name": "get_architecture_summary",
-                "arguments": {},
-            },
-        }
-        res_sum = server.dispatch(sum_req)
-        sum_data = json.loads(res_sum["result"]["content"][0]["text"])
+        sum_data = server.handle_get_architecture_summary({})
         assert sum_data["truncated"] is True
-        assert sum_data["indexed_count"] == 35
-        assert sum_data["total_discovered_files"] == 40
-        assert len(sum_data["skipped_files"]) == 5
+        assert sum_data["indexed_count"] == 150
+        assert sum_data["total_discovered_files"] == 162
+        assert len(sum_data["skipped_files"]) == 12
 
         # 3. get_topic_context with topic that matches skipped file
         # Pick one file from skipped_files
@@ -259,7 +240,7 @@ def test_mcp_truncation_over_35_files_and_actionable_error():
         res_skipped = server.dispatch(ctx_req_skipped)
         assert res_skipped["result"]["isError"] is True
         msg_skipped = res_skipped["result"]["content"][0]["text"]
-        assert "CodeGraphy Lite 35-file limit reached" in msg_skipped
+        assert "CodeGraphy Lite 150-file limit reached" in msg_skipped
         assert "Found matching unindexed file" in msg_skipped
         assert query_token in msg_skipped
         assert "re-scope your root path (CODEGRAPHY_ROOT)" in msg_skipped
@@ -277,5 +258,5 @@ def test_mcp_truncation_over_35_files_and_actionable_error():
         res_unmatched = server.dispatch(ctx_req_unmatched)
         assert res_unmatched["result"]["isError"] is True
         msg_unmatched = res_unmatched["result"]["content"][0]["text"]
-        assert "CodeGraphy Lite 35-file limit reached" in msg_unmatched
+        assert "CodeGraphy Lite 150-file limit reached" in msg_unmatched
         assert "re-scope your root path (CODEGRAPHY_ROOT)" in msg_unmatched

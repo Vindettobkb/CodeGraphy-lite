@@ -340,7 +340,7 @@ def run_mode_b(task: BenchmarkTask, repo_path: Path, fixed_sources: Dict[str, st
     for sf in task.lite_snippet_files:
         p = repo_path / sf
         base_name = p.stem
-        # If the file's topic could not be located in Lite graph (e.g. truncated by 35-file limit),
+        # If the file's topic could not be located in Lite graph (e.g. truncated by 150-file limit),
         # an agent relying solely on Lite MCP cannot locate the file context
         if base_name in missing_topics:
             continue

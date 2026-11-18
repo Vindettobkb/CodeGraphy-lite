@@ -21,7 +21,7 @@
     arrow: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>',
   };
 
-  const PRO_URL = 'https://github.com/Vindettobkb/codegraphy-pro';
+  const PRO_URL = 'https://github.com/Vindettobkb/Codegraphy-releases/releases/tag/v2.2.0';
 
   const PRO_FEATURES = {
     smart_context: {
@@ -105,7 +105,7 @@
     `).join('');
 
     const tableRows = [
-      { label: 'Project size',            lite: '35 files',   pro: 'Unlimited' },
+      { label: 'Project size',            lite: '150 files',  pro: 'Unlimited' },
       { label: 'MCP tools',               lite: '3',          pro: '11' },
       { label: 'AST Compression',         lite: null,         pro: 'Included' },
       { label: 'Blast Radius & Git Diff', lite: null,         pro: 'Included' },

@@ -68,26 +68,42 @@ const utils = require('../utils/helpers');
 def test_scanner_file_limit():
     with tempfile.TemporaryDirectory() as tmpdir:
         tmppath = Path(tmpdir)
-        # Create 45 dummy python files
-        for i in range(45):
+        # Create 160 dummy python files
+        for i in range(160):
             f = tmppath / f"module_{i:02d}.py"
             f.write_text(f"def func_{i}(): pass\n", encoding="utf-8")
 
+        assert MAX_LITE_FILES == 150
+
         files, _ = collect_project_files(tmppath, max_files=MAX_LITE_FILES)
         assert len(files) == MAX_LITE_FILES
-        assert len(files) == 35
+        assert len(files) == 150
 
         preview = scan_project(tmppath)
-        assert preview.total_files == 35
-        assert len(preview.topics) == 35
+        assert preview.total_files == 150
+        assert len(preview.topics) == 150
         assert preview.truncated is True
-        assert preview.total_discovered_files == 45
-        assert preview.indexed_count == 35
+        assert preview.total_discovered_files == 160
+        assert preview.indexed_count == 150
         assert preview.skipped_count == 10
         assert len(preview.skipped_files) == 10
 
 
-def test_scanner_under_35_files_no_truncation():
+def test_scanner_exactly_150_files_no_truncation():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmppath = Path(tmpdir)
+        for i in range(150):
+            (tmppath / f"module_{i:03d}.py").write_text("x = 1\n", encoding="utf-8")
+
+        preview = scan_project(tmppath)
+        assert preview.truncated is False
+        assert preview.total_discovered_files == 150
+        assert preview.indexed_count == 150
+        assert preview.skipped_count == 0
+        assert preview.skipped_files == []
+
+
+def test_scanner_under_limit_no_truncation():
     with tempfile.TemporaryDirectory() as tmpdir:
         tmppath = Path(tmpdir)
         for i in range(12):
@@ -112,14 +128,14 @@ def test_scanner_under_35_files_no_truncation():
 def test_scanner_skipped_files_capped_at_100():
     with tempfile.TemporaryDirectory() as tmpdir:
         tmppath = Path(tmpdir)
-        for i in range(140):
+        for i in range(260):
             (tmppath / f"file_{i:03d}.py").write_text("pass\n", encoding="utf-8")
 
         preview = scan_project(tmppath)
         assert preview.truncated is True
-        assert preview.total_discovered_files == 140
-        assert preview.indexed_count == 35
-        assert preview.skipped_count == 105
+        assert preview.total_discovered_files == 260
+        assert preview.indexed_count == 150
+        assert preview.skipped_count == 110
         assert len(preview.skipped_files) == 100
 
 

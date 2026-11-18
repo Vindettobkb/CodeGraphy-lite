@@ -15,35 +15,14 @@ Built for developers and AI agents (Claude Code, Cursor, Windsurf, Cline), CodeG
 
 ## 🚀 Quickstart
 
-### 1. Installation
+On Windows, create an environment, install Lite, then scan a project and open the local UI:
 
-Install via pip:
-
-```bash
-pip install codegraphy-lite
+```powershell
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install codegraphy-lite
+.venv\Scripts\codegraphy-lite.exe C:\path\to\my-project --scan --no-browser --port 8000
+# Open http://127.0.0.1:8000 in your browser
 ```
-
-Or install from source for development:
-
-```bash
-git clone https://github.com/codegraphy-dev/codegraphy-lite.git
-cd codegraphy-lite
-pip install -e .
-```
-
-### 2. Launch the Web UI
-
-Run `codegraphy-lite` pointing to any project directory:
-
-```bash
-# Scan and visualize the current directory
-codegraphy-lite
-
-# Or specify a directory and custom port
-codegraphy-lite /path/to/my-project --port 8000
-```
-
-The server automatically scans the project (up to 35 files) and opens `http://127.0.0.1:8000` in your default web browser.
 
 ---
 
@@ -121,7 +100,7 @@ CodeGraphy Lite is free and open-source (MIT). For larger codebases, polyglot re
 | **Pricing & License** | **Free (MIT License)** | **$19 Lifetime License** |
 | **Visual Architecture Canvas** | ✅ Interactive 2D Canvas | ✅ Interactive 2D Canvas |
 | **Workspace Export / Import** | ✅ Human-readable `.cg.md` | ✅ Human-readable `.cg.md` |
-| **Project File Limit** | **35 files** (Ideal for packages & services) | **Unlimited** (Enterprise mono-repos) |
+| **Project File Limit** | **150 files** (Ideal for packages & services) | **Unlimited** (Enterprise mono-repos) |
 | **Supported Languages** | Python AST (`ast.parse()`) | **Polyglot** (Python, TS, JS, Go, Rust, C#, Java) |
 | **MCP Server Tools** | **3 Core Tools** | **11 Industrial Intelligence Tools** |
 | **Blast Radius & Impact Analysis** | ❌ None | ✅ Direct & Transitive Blast Radius Scoring |
@@ -139,7 +118,7 @@ CodeGraphy Lite is free and open-source (MIT). For larger codebases, polyglot re
 - 🗂️ **Split Layers & Lanes**: Group architectural topics by workflow stage (`Planning`, `Development`, `Testing`, `Done`).
 - 🔍 **Semantic Zoom**: Multi-level zoom with automatic Level-of-Detail (LOD)—zoom in to inspect function signatures and attached files, zoom out for high-level module topology.
 - 📝 **Portable `.cg.md` Workspaces**: Human-readable Markdown workspace specification format with two-way import/export.
-- ⚡ **Lightweight AST Scanner**: Fast project scanner using Python's standard library `ast.parse()` and regex import matching (scans up to 35 files).
+- ⚡ **Lightweight AST Scanner**: Fast project scanner using Python's standard library `ast.parse()` and regex import matching (scans up to 150 files).
 - 🤖 **STDIO MCP Server (`codegraphy-mcp`)**: Exposes 3 essential architectural intelligence tools to AI assistants via JSON-RPC 2.0.
 - 🔒 **100% Local-First & Private**: No cloud telemetry, no code uploads. Your codebase never leaves your machine.
 
@@ -160,7 +139,7 @@ options:
   --port PORT           HTTP server port (default: 8000)
   --host HOST           HTTP server bind host (default: 127.0.0.1)
   --no-browser          Do not automatically launch the browser
-  --scan                Force automatic project directory scan on startup (up to 35 files)
+  --scan                Force automatic project directory scan on startup (up to 150 files)
   -v, --version         Show program's version number and exit
 ```
 
@@ -184,7 +163,7 @@ codegraphy-lite/
 │   ├── cli.py              # `codegraphy-lite` CLI entrypoint
 │   ├── mcp.py              # `codegraphy-mcp` STDIO JSON-RPC 2.0 server
 │   ├── models.py           # Pydantic models for graph & workspace
-│   ├── scanner.py          # Safe stdlib AST scanner (max 35 files)
+│   ├── scanner.py          # Safe stdlib AST scanner (max 150 files)
 │   ├── server.py           # FastAPI REST & WebSocket server
 │   ├── storage.py          # Local persistence & .cg.md codec
 │   └── web/                # Bundled visual UI assets

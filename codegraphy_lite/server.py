@@ -30,6 +30,7 @@ from codegraphy_lite.models import (
     WorkspaceModel,
 )
 from codegraphy_lite.scanner import (
+    MAX_LITE_FILES,
     build_graph_and_workspace,
     extract_ast_signatures,
     scan_project,
@@ -163,7 +164,7 @@ def health_check():
         "edition": "lite",
         "version": __version__,
         "open_source": True,
-        "max_scan_files": 35,
+        "max_scan_files": MAX_LITE_FILES,
     }
 
 

@@ -2,7 +2,7 @@
 
 Uses ONLY Python standard library `ast.parse()` and regex-based import matching
 to discover files, extract signatures, and build interactive architecture graphs.
-Enforces a hard limit of 35 files (open-source lite edition).
+Enforces a hard limit of 150 files (open-source lite edition).
 """
 
 from __future__ import annotations
@@ -30,7 +30,7 @@ from codegraphy_lite.models import (
     new_id,
 )
 
-MAX_LITE_FILES = 35
+MAX_LITE_FILES = 150
 SUPPORTED_EXTENSIONS = {".py", ".ts", ".tsx", ".js", ".jsx", ".json", ".md"}
 DEFAULT_IGNORE_DIRS = {
     ".git", ".venv", "venv", "node_modules", "__pycache__",
@@ -187,7 +187,7 @@ def infer_category(rel_path: str) -> str:
 
 
 def scan_project(root_dir: str | Path, max_files: int = MAX_LITE_FILES) -> ScanPreviewResponse:
-    """Scans project directory and builds ScanPreviewResponse (max 35 files)."""
+    """Scans project directory and builds ScanPreviewResponse (capped by MAX_LITE_FILES)."""
     root_path = Path(root_dir).resolve()
     if not root_path.exists():
         raise ValueError(f"Directory does not exist: {root_path}")

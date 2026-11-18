@@ -17,7 +17,7 @@ import uvicorn
 
 from codegraphy_lite import __version__
 from codegraphy_lite.mcp import main as mcp_main
-from codegraphy_lite.scanner import build_graph_and_workspace, scan_project
+from codegraphy_lite.scanner import MAX_LITE_FILES, build_graph_and_workspace, scan_project
 from codegraphy_lite.server import app
 from codegraphy_lite.storage import get_storage_dir, load_graph, save_graph, save_workspace, set_active_root
 
@@ -73,7 +73,7 @@ def main():
     parser.add_argument(
         "--scan",
         action="store_true",
-        help="Force automatic project directory scan on startup (up to 35 files)",
+        help=f"Force automatic project directory scan on startup (up to {MAX_LITE_FILES} files)",
     )
     parser.add_argument(
         "-v", "--version",
@@ -99,7 +99,7 @@ def main():
     existing_graph = load_graph(project_root)
 
     if args.scan or not existing_graph.nodes:
-        print(f"[*] Scanning project architecture in '{project_root}' (Lite limit: max 35 files)...")
+        print(f"[*] Scanning project architecture in '{project_root}' (Lite limit: max {MAX_LITE_FILES} files)...")
         try:
             preview = scan_project(project_root)
             graph, ws = build_graph_and_workspace(preview)

@@ -15,7 +15,7 @@ from typing import Any, Dict, List, Optional
 
 from codegraphy_lite import __version__
 from codegraphy_lite.models import GraphState, WorkspaceModel
-from codegraphy_lite.scanner import extract_ast_signatures
+from codegraphy_lite.scanner import MAX_LITE_FILES, extract_ast_signatures
 from codegraphy_lite.storage import get_active_root, load_graph, load_workspace, set_active_root
 
 PROTOCOL_VERSION = "2024-11-05"
@@ -48,7 +48,7 @@ def scrub_secrets(val: Any) -> Any:
 TOOLS_MANIFEST = [
     {
         "name": "list_workspace_topics",
-        "description": "Lists all architectural topics/nodes in the workspace with their status, lanes, attached files, descriptions, and file truncation metadata (35-file limit).",
+        "description": f"Lists all architectural topics/nodes in the workspace with their status, lanes, attached files, descriptions, and file truncation metadata ({MAX_LITE_FILES}-file limit).",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -114,7 +114,7 @@ class CodeGraphyLiteMCP:
 
         if self.root.exists() and self.root.is_dir():
             try:
-                from codegraphy_lite.scanner import MAX_LITE_FILES, collect_project_files
+                from codegraphy_lite.scanner import collect_project_files
                 collect_res = collect_project_files(self.root, max_files=MAX_LITE_FILES)
                 total_discovered = collect_res.total_discovered
                 indexed = len(graph.nodes) if graph.nodes else len(collect_res.collected)
@@ -196,7 +196,7 @@ class CodeGraphyLiteMCP:
 
                 msg = (
                     f"Topic '{query}' not found in indexed workspace. "
-                    f"CodeGraphy Lite 35-file limit reached ({indexed_count}/{total_discovered_files} files indexed, {skipped_count} skipped)."
+                    f"CodeGraphy Lite {MAX_LITE_FILES}-file limit reached ({indexed_count}/{total_discovered_files} files indexed, {skipped_count} skipped)."
                 )
                 if matching:
                     matches_list = ", ".join(f"'{m}'" for m in matching[:5])
@@ -208,7 +208,7 @@ class CodeGraphyLiteMCP:
                     )
                 else:
                     msg += (
-                        " The requested module may be among the unindexed files excluded by the 35-file cap. "
+                        f" The requested module may be among the unindexed files excluded by the {MAX_LITE_FILES}-file cap. "
                         "Please re-scope your root path (CODEGRAPHY_ROOT) to the specific subpackage/subfolder of interest."
                     )
                 raise ValueError(msg)

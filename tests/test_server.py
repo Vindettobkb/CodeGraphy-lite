@@ -19,7 +19,7 @@ def test_health_check():
     assert data["status"] == "ok"
     assert data["edition"] == "lite"
     assert data["open_source"] is True
-    assert data["max_scan_files"] == 35
+    assert data["max_scan_files"] == 150
 
 
 def test_workspace_root_path():
