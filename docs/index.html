@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CodeGraphy v2.2.0 — Local-first context intelligence for AI coding agents</title>
-  <meta name="description" content="CodeGraphy builds task-scoped context from your repository graph, enforces a hard token budget, and reports confidence. 96.2–99.0% fewer tokens on recorded httpx, rich and typer benchmarks. Windows desktop + MIT-licensed Lite." />
+  <meta name="description" content="CodeGraphy v2.2.0: benchmarked context is 96.2–99.0% smaller than full repositories; held-out file recall is 0.200 vs 0.076 for naive BM25. Cross-platform Lite supports up to 150 files." />
   <meta name="theme-color" content="#0B0C0E" />
   <link rel="canonical" href="https://codegraphy.software/" />
 
@@ -12,10 +12,10 @@
   <meta property="og:site_name" content="CodeGraphy" />
   <meta property="og:url" content="https://codegraphy.software/" />
   <meta property="og:title" content="CodeGraphy v2.2.0 — Stop feeding blind AST skeletons to AI coding agents" />
-  <meta property="og:description" content="Task-scoped context, strict token budgets and honest confidence reports. 96.2–99.0% fewer tokens across recorded httpx, rich and typer benchmarks." />
+  <meta property="og:description" content="Full-repository context compression and held-out retrieval quality are measured separately. Test file recall: 0.200 vs 0.076 for naive BM25; Lite runs on macOS, Linux and Windows." />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="CodeGraphy v2.2.0" />
-  <meta name="twitter:description" content="Local-first context intelligence for Cursor, Claude Code, Codex, OpenCode and Antigravity. 96.2–99.0% fewer tokens on recorded benchmarks." />
+  <meta name="twitter:description" content="Full-repository context compression, plus held-out recall results: 0.200 file recall vs 0.076 for naive BM25. Cross-platform Lite for macOS, Linux and Windows." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -122,39 +122,39 @@
           <h1 class="hero-title">Stop feeding blind AST skeletons to AI coding agents</h1>
 
           <p class="hero-sub">
-            CodeGraphy builds task-scoped context from your repository graph, then enforces a hard token budget.
-            <strong>96.2–99.0% fewer tokens</strong> than raw files across the recorded httpx, rich and typer runs —
-            with a confidence report that tells the agent when the static view is incomplete.
+            CodeGraphy builds task-scoped context from your repository graph and enforces a hard token budget.
+            In the recorded httpx, rich and typer runs, context used <strong>96.2–99.0% fewer tokens than loading each complete repository</strong> (132K–388K tokens).
+            Separately, on held-out test tasks (<code>RECALL_V22.md</code>, n=7, 3,000-token budget), file recall was <strong>0.200 vs 0.076</strong> for naive BM25 (2.6×); symbol recall was 0.643, and budget use was 26.9% lower.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="https://github.com/Vindettobkb/Codegraphy-releases/releases/tag/v2.2.0" target="_blank" rel="noopener noreferrer">
+            <a class="btn btn-primary btn-lg" href="https://pypi.org/project/codegraphy-lite/" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 3v12"></path>
                 <path d="m7 10 5 5 5-5"></path>
                 <path d="M5 21h14"></path>
               </svg>
-              Download for Windows v2.2.0
+              pip install codegraphy-lite
             </a>
-            <a class="btn btn-secondary btn-lg" href="https://github.com/Vindettobkb/codegraphy-lite" target="_blank" rel="noopener noreferrer">
+            <a class="btn btn-secondary btn-lg" href="https://github.com/Vindettobkb/Codegraphy-releases/releases/tag/v2.2.0" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="16 18 22 12 16 6"></polyline>
                 <polyline points="8 6 2 12 8 18"></polyline>
               </svg>
-              Open-Source Lite
+              Download Windows Desktop v2.2.0
             </a>
           </div>
 
           <div class="hero-meta">
             <span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18"></path></svg>
-              Windows x64 · Installer or portable
+              macOS · Linux · Windows · Lite scans up to 150 files
             </span>
             <span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>
               No account required
             </span>
-            <span class="ok">MIT-licensed Lite · pip install codegraphy-lite</span>
+            <span class="ok">MIT-licensed Lite · up to 150 files</span>
           </div>
         </div>
 
@@ -349,8 +349,8 @@ Open http://127.0.0.1:8000 in your browser</code></pre>
           <div class="eyebrow">Benchmark v2.2</div>
           <h2 class="section-title">The token savings are real. The caveats are in the same table.</h2>
           <p class="section-sub">
-            Deterministic local benchmark, <code>tiktoken cl100k_base</code>, three real repositories and nine tasks.
-            Baseline is raw file context. After is the full <code>build_task_context</code> payload at a 5,000-token ceiling.
+            Full-repository compression benchmark (<code>BENCHMARK_V22.md</code>): deterministic local runs on httpx, rich and typer.
+            The 96.2–99.0% reduction compares the task payload with loading the complete repository (132K–388K tokens); it is not a retrieval-recall score.
           </p>
         </div>
 
@@ -493,6 +493,23 @@ Open http://127.0.0.1:8000 in your browser</code></pre>
             on <span class="mono">rich-debug-table</span> it was 0.50. That is why every payload carries
             <span class="mono">confidence_score</span> and <span class="mono">missing_dependencies</span> instead of claiming the graph is complete.
           </div>
+        </div>
+
+        <div class="recall-benchmark">
+          <div class="eyebrow">Held-out Recall Benchmark</div>
+          <h3>Held-out Recall Benchmark (<code>RECALL_V22.md</code>)</h3>
+          <p class="section-sub">Independent held-out task evaluation at a 3,000-token ceiling. Rows show CodeGraphy context vs naive whole-file BM25; budget savings are relative to BM25.</p>
+          <div class="table-wrap">
+            <table class="bench-table recall-table">
+              <caption>Recall and selected-context budget on dev and test splits (n=7 tasks per split)</caption>
+              <thead><tr><th scope="col">Split</th><th scope="col">Tasks</th><th scope="col">CodeGraphy file recall</th><th scope="col">BM25 file recall</th><th scope="col">CodeGraphy symbol recall</th><th scope="col">BM25 symbol recall</th><th scope="col">Budget saved vs BM25</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">dev</th><td>7</td><td>0.369</td><td>0.171</td><td>0.643</td><td>0.571</td><td>21.82%</td></tr>
+                <tr><th scope="row">test</th><td>7</td><td>0.200</td><td>0.076</td><td>0.643</td><td>0.714</td><td>26.90%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="recall-method"><strong>What file_recall measures:</strong> for each task, the ground-truth file set was built from independently searched symbol definitions plus their direct imports (up to three importers); paths were checked for existence. The ground truth was source-derived, not generated from CodeGraphy graph/context output. BM25 is the naive whole-file baseline under the same token ceiling. On test, BM25 has higher symbol_recall (0.714 vs 0.643), while CodeGraphy has higher file_recall and uses 26.90% fewer context tokens.</p>
         </div>
       </div>
     </section>
