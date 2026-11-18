@@ -55,9 +55,9 @@ codegraphy-lite = "codegraphy_lite.cli:main"
 codegraphy-mcp = "codegraphy_lite.mcp:main"
 
 [project.urls]
-Homepage = "https://github.com/codegraphy-dev/codegraphy-lite"
-Documentation = "https://github.com/codegraphy-dev/codegraphy-lite#readme"
-Repository = "https://github.com/codegraphy-dev/codegraphy-lite.git"
+Homepage = "https://github.com/Vindettobkb/codegraphy-lite"
+Documentation = "https://github.com/Vindettobkb/codegraphy-lite#readme"
+Repository = "https://github.com/Vindettobkb/codegraphy-lite.git"
 
 [tool.setuptools]
 packages = ["codegraphy_lite"]

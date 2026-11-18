@@ -79,7 +79,9 @@ While AST-based graphs cut context costs by **4.1x**, static analysis alone has 
 - **What happened**: Terminal rendering in `typer` depends dynamically on `os.environ.get("TYPER_USE_RICH")` inside `typer/utils.py`. Meanwhile, `typer/core.py` performs in-function deferred imports (`from . import rich_utils` inside command handlers) rather than top-level module imports.
 - **The Blind Spot**: A purely static AST import crawler inspects module-level `import` statements. Because the connection between `typer/utils.py` and `typer/core.py` is mediated by a runtime environment variable and deferred function calls, static AST edge detection cannot infer that modifying environment variable parsing impacts command formatting without dynamic runtime tracing.
 
-### 2. The Open-Source 35-File Safety Limit (`MAX_LITE_FILES`)
+### 2. Historical 35-File Safety Limit (`MAX_LITE_FILES`)
+
+This benchmark predates the current 150-file Lite limit; the 35-file cap described here was active when these measurements were collected.
 - **Case Study**: Rich Task 2 (`#2566`)
 - **What happened**: `Textualize/rich` is a large repository containing over 80+ `.py` modules and numerous localized `README.*.md` files. CodeGraphy Lite includes a safety cap (`MAX_LITE_FILES = 35`) designed for small-to-medium modules.
 - **The Blind Spot**: When scanning from repository root alphabetically, Lite encountered documentation and early module files (`_cell_widths.py` through `diagnose.py`), reaching its 35-file ceiling before indexing `rich/json.py`. When an agent asked for `get_topic_context(topic='json')`, Lite responded with `Topic 'json' not found in workspace`.
@@ -93,7 +95,7 @@ You can reproduce these exact metrics locally with zero external dependencies:
 
 ```bash
 # 1. Clone codegraphy-lite and install dependencies
-git clone https://github.com/codegraphy-dev/codegraphy-lite.git
+git clone https://github.com/Vindettobkb/codegraphy-lite.git
 cd codegraphy-lite
 pip install -e ".[test]"
 pip install tiktoken

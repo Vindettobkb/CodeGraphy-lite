@@ -367,7 +367,7 @@ def _pro_required_response(feature_name: str, desc: str) -> JSONResponse:
             "pro_feature": True,
             "feature": feature_name,
             "description": desc,
-            "upgrade_url": "https://github.com/noname/codegraphy-pro",
+            "upgrade_url": "https://github.com/Vindettobkb/Codegraphy-releases/releases/tag/v2.2.0",
         },
     )
 
