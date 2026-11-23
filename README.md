@@ -15,20 +15,43 @@ Built for developers and AI agents (Claude Code, Cursor, Windsurf, Cline), CodeG
 
 ## 🚀 Quickstart
 
-On Windows, create an environment, install Lite, then scan a project and open the local UI:
+Run the MCP server with no manual installation (requires [uv](https://docs.astral.sh/uv/) and Python 3.9+):
 
-```powershell
-python -m venv .venv
-.venv\Scripts\python.exe -m pip install codegraphy-lite
-.venv\Scripts\codegraphy-lite.exe C:\path\to\my-project --scan --no-browser --port 8000
-# Open http://127.0.0.1:8000 in your browser
+```bash
+uvx codegraphy-lite
 ```
+
+Add it to Claude Code in one command:
+
+```bash
+claude mcp add codegraphy -- uvx codegraphy-lite
+```
+
+Or add it to Cursor (`.cursor/mcp.json` or the global Cursor MCP config):
+
+```json
+{
+  "mcpServers": {
+    "codegraphy": {
+      "command": "uvx",
+      "args": ["codegraphy-lite"],
+      "env": {
+        "CODEGRAPHY_ROOT": "/absolute/path/to/your/project"
+      }
+    }
+  }
+}
+```
+
+To use the local web UI instead, run `uvx codegraphy-lite serve /path/to/project --scan`.
+
+Lite is MIT-licensed, scans up to **150 files**, and exposes exactly **3 MCP tools**. Pro-only features are not included.
 
 ---
 
 ## 🤖 Model Context Protocol (MCP) Setup
 
-CodeGraphy Lite includes a built-in MCP server that communicates over STDIO via `codegraphy-mcp` (JSON-RPC 2.0 / MCP 2024-11-05 standard).
+CodeGraphy Lite includes a built-in MCP server that communicates over STDIO (JSON-RPC 2.0 / MCP 2024-11-05 standard). Use `uvx codegraphy-lite` for a zero-install start; `codegraphy-mcp` remains available as an installed alias.
 
 ### Available MCP Tools
 
@@ -127,15 +150,15 @@ CodeGraphy Lite is free and open-source (MIT). For larger codebases, polyglot re
 ## 🛠️ CLI Reference
 
 ```
-usage: codegraphy-lite [-h] [--port PORT] [--host HOST] [--no-browser] [--scan] [-v] [path]
+Usage:
+  codegraphy-lite                 Start the MCP STDIO server (default)
+  codegraphy-lite mcp             Start the MCP STDIO server
+  codegraphy-lite serve [path]    Start the local web UI (default path: .)
+  codegraphy-lite --version       Show the installed version
 
-CodeGraphy Lite — Standalone Open-Source Visual Architecture Graph & MCP Server
-
-positional arguments:
-  path                  Target project directory to visualize (default: current directory)
-
-options:
+serve options:
   -h, --help            Show this help message and exit
+  path                  Target project directory to visualize (default: current directory)
   --port PORT           HTTP server port (default: 8000)
   --host HOST           HTTP server bind host (default: 127.0.0.1)
   --no-browser          Do not automatically launch the browser

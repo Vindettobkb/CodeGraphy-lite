@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "codegraphy-lite"
-version = "1.0.2"
+version = "1.0.3"
 description = "Standalone open-source visual architecture graph and MCP server for Python and modern codebases"
 readme = "README.md"
 authors = [

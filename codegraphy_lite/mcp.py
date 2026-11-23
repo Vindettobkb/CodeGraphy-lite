@@ -15,12 +15,30 @@ from typing import Any, Dict, List, Optional
 
 from codegraphy_lite import __version__
 from codegraphy_lite.models import GraphState, WorkspaceModel
-from codegraphy_lite.scanner import MAX_LITE_FILES, extract_ast_signatures
-from codegraphy_lite.storage import get_active_root, load_graph, load_workspace, set_active_root
+from codegraphy_lite.scanner import (
+    MAX_LITE_FILES,
+    build_graph_and_workspace,
+    extract_ast_signatures,
+    scan_project,
+)
+from codegraphy_lite.storage import (
+    get_active_root,
+    load_graph,
+    load_workspace,
+    save_graph,
+    save_workspace,
+    set_active_root,
+)
 
 PROTOCOL_VERSION = "2024-11-05"
 SERVER_NAME = "codegraphy-lite-mcp"
 MAX_PAYLOAD_CHARS = 32000
+MCP_INSTRUCTIONS = (
+    "Use CodeGraphy graph tools before bulk-reading files: start with "
+    "get_architecture_summary or list_workspace_topics, then get_topic_context "
+    "for signatures and dependencies. When truncated is true, check skipped_files "
+    "and re-scope CODEGRAPHY_ROOT to a smaller subdirectory."
+)
 
 SECRET_PATTERNS = [
     re.compile(r"\b(?:sk|whsec)_[a-zA-Z0-9_\-]{16,}\b"),
@@ -48,7 +66,10 @@ def scrub_secrets(val: Any) -> Any:
 TOOLS_MANIFEST = [
     {
         "name": "list_workspace_topics",
-        "description": f"Lists all architectural topics/nodes in the workspace with their status, lanes, attached files, descriptions, and file truncation metadata ({MAX_LITE_FILES}-file limit).",
+        "description": (
+            f"List workspace modules with lifecycle state, files, and dependency counts; "
+            f"includes truncation metadata for the {MAX_LITE_FILES}-file cap."
+        ),
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -62,7 +83,10 @@ TOOLS_MANIFEST = [
     },
     {
         "name": "get_topic_context",
-        "description": "Retrieves comprehensive architectural context for a topic, including 1-hop connected dependencies and AST-extracted signatures from attached files.",
+        "description": (
+            "Get one module's description, 1-hop dependencies, and AST signatures "
+            "from its attached files."
+        ),
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -81,7 +105,10 @@ TOOLS_MANIFEST = [
     },
     {
         "name": "get_architecture_summary",
-        "description": "Returns a high-level architectural overview: total topics, dependency edges, lanes, status distribution, and key architectural modules.",
+        "description": (
+            "Summarize project architecture: module and dependency counts, lifecycle "
+            "distribution, lanes, and the most connected modules."
+        ),
         "inputSchema": {
             "type": "object",
             "properties": {},
@@ -100,6 +127,21 @@ class CodeGraphyLiteMCP:
     @property
     def root(self) -> Path:
         return get_active_root()
+
+    def _ensure_graph(self) -> GraphState:
+        """Loads the graph, auto-scanning the active root once when it is empty."""
+        graph = load_graph(self.root)
+        if graph.nodes or not self.root.exists() or not self.root.is_dir():
+            return graph
+        try:
+            preview = scan_project(self.root)
+            if preview.topics:
+                graph, workspace = build_graph_and_workspace(preview)
+                save_graph(graph, self.root)
+                save_workspace(workspace, self.root)
+        except Exception:
+            pass
+        return graph
 
     def _get_truncation_metadata(self, graph: GraphState) -> Tuple[bool, int, int, List[str], int]:
         """Returns (truncated, indexed_count, total_discovered_files, skipped_files, skipped_count)."""
@@ -130,7 +172,7 @@ class CodeGraphyLiteMCP:
         return False, total, total, [], 0
 
     def handle_list_workspace_topics(self, args: Dict[str, Any]) -> Dict[str, Any]:
-        graph = load_graph(self.root)
+        graph = self._ensure_graph()
         status_filter = args.get("status", "all")
 
         topics = []
@@ -177,7 +219,7 @@ class CodeGraphyLiteMCP:
             raise ValueError("Parameter 'topic' is required.")
         include_ast = args.get("include_ast", True)
 
-        graph = load_graph(self.root)
+        graph = self._ensure_graph()
         target = None
         for n in graph.nodes:
             if n.id.lower() == query or n.data.label.lower() == query:
@@ -254,7 +296,7 @@ class CodeGraphyLiteMCP:
         }
 
     def handle_get_architecture_summary(self, args: Dict[str, Any]) -> Dict[str, Any]:
-        graph = load_graph(self.root)
+        graph = self._ensure_graph()
         ws = load_workspace(self.root)
         truncated, indexed_count, total_discovered_files, skipped_files, skipped_count = self._get_truncation_metadata(graph)
 
@@ -330,6 +372,7 @@ class CodeGraphyLiteMCP:
                         "name": SERVER_NAME,
                         "version": __version__,
                     },
+                    "instructions": MCP_INSTRUCTIONS,
                     "capabilities": {
                         "tools": {"listChanged": False},
                     },
